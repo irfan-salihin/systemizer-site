@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/*
+ * PLACEHOLDER brand tokens — pending replacement in Phase 10 (Brand & Content Touch-Up).
+ * Derived from the current live site's existing look; see src-planning/brand-tokens-placeholder.md.
+ * Do NOT treat these as final approved brand colors/fonts.
+ */
+@theme {
+  /* Colors (from live site's Elementor kit custom properties + logo SVG) */
+  --color-brand-primary: #0075c9;
+  --color-brand-accent: #0077c8;
+  --color-brand-primary-dark: #0066ab;
+  --color-brand-secondary: #142149;
+  --color-brand-dark: #131022;
+  --color-brand-light: #ffffff;
+  --color-brand-surface: #f3f6ff;
+  --color-brand-text: #666666;
+  --color-brand-warning: #ff8c00;
+
+  /* Typography (live site: Arial headings, Roboto body — self-hosted via Fontsource) */
+  --font-heading: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-body: Roboto, Arial, Helvetica, sans-serif;
+
+  /* Type scale (from live Elementor kit, desktop values) */
+  --text-display: 60px;
+  --text-display--line-height: 70px;
+  --text-display--font-weight: 300;
+}

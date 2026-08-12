@@ -1,0 +1,10 @@
+# Build output
+dist/
+.astro/
+node_modules/
+
+# Lockfile (auto-generated, not hand-formatted)
+pnpm-lock.yaml
+
+# Raw audit files — preserved verbatim, not reformatted
+content-audit/

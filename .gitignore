@@ -1,0 +1,19 @@
+dist/
+node_modules/
+.astro/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.production
+.env.development
+
+# macOS/Linux junk
+.DS_Store
+Thumbs.db

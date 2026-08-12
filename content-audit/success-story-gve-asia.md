@@ -1,0 +1,160 @@
+# Content Audit — success-story-gve-asia
+
+- **Source URL:** https://systemizerinc.com/success-stories/gve-asia-sdn-bhd/
+- **Page title:** GVE Asia Sdn Bhd - Systemizer Technic
+- **Meta description:** The Authorised Dealer – Volkswagen and Jeep The Challenge Newly acquired GVE Asia Sdn Bhd was tasked to set up their IT infrastructure in just two weeks. The Volkswagen and Jeep dealer was only just beginning to understand and adopt the processes of their new parent company, when they realised their technology infrastructure required a
+
+## Extracted body copy (raw)
+
+Skip to navigation
+
+Skip to content
+
+Systemizer Technic
+
+Menu
+
+Home
+
+Company
+
+About Us
+
+Blog
+
+Helix by ST
+
+ST Overwatch
+
+ST TrueState
+
+STackNode
+
+STackBot
+
+Solutions
+
+IT Solutions
+
+ST-Infra
+
+ST-Automation
+
+ST-Cloud
+
+ST-Services
+
+IT Consulting
+
+Success Stories
+
+Clients
+
+Partners
+
+Contact Us
+
+#masthead
+
+Home
+
+Success Stories
+
+GVE Asia Sdn Bhd
+
+.entry-header
+
+The Authorised Dealer – Volkswagen and Jeep
+
+The Challenge
+
+Newly acquired GVE Asia Sdn Bhd was tasked to set up their IT infrastructure in just two weeks. The Volkswagen and Jeep dealer was only just beginning to understand and adopt the processes of their new parent company, when they realised their technology infrastructure required a revamp. This was a requirement by Volkswagen and Jeep, to ensure data from each brand was kept separate from each other. What complicated matters was the fact that the company has assets which were shared by both brands, including equipment in the workshop and warehouse and these needed to be accounted for appropriately.
+
+A review of business processes also brought to the surface the need for an agile solution which can cater for the rapid changing direction of their principals. These would also need to cover the ability for their employees to have access to up to date tools which would enable them to work more efficiently.
+
+The Goal
+
+Taking into account the requirements set by the principals, and also how they could improve their business processes, GVE Asia determined some objectives for the new IT infrastructure.
+
+A single operations platform which can merge and consolidate the different SOPs, IT Policies and Business operations
+
+A single system which can ensure the data privacy and security of each brand
+
+Keep operating expenditure low and non-redundant
+
+As the business policies can change quarterly, GVE Asia also required an experience partner to help them navigate those changes.
+
+The Solution
+
+Systemizer Technic was able to provide GVE Asia with the best and most cost effective tools for its employees and directors by the following:
+
+IT Architecture consolidation
+
+Deploying Microsoft 365
+
+Providing an IT Guy® Resident Engineer
+
+The Outcome
+
+After some planning meetings, the execution kicked off, and within two weeks, GVE Asia managed to set up their new IT infrastructure consisting of consolidating seven servers into a single private cloud with a centralised back-up. This translated to tangible cost savings from the reduced electricity usage and also a more advanced and secure system which easily met the requirements of the principals.
+
+Systemizer also revamped the licensing type for Microsoft which eased the cash flow, and ensured the employees were always accessing the latest versions of the software. With the resident IT Guy® engineer on site, the roll-out went without a hitch, nicely easing all employees into familiarisation with the new system.
+
+.entry-content
+
+#post-##
+
+#main
+
+#primary
+
+#content
+
+#page
+
+Reach out to us for a chat
+
+hello@systemizerinc.com
+
++603-5612 0032
+
+quick links
+
+Home
+
+Helix by ST
+
+IT Solutions
+
+IT Consulting
+
+Success Stories
+
+Company
+
+About Us
+
+Clients
+
+Partners
+
+Blog
+
+Contact Us
+
+Business hours
+
+Mon - Fri : 09:00 am – 06:00 pm
+
+Follow Us
+
+Facebook-f
+
+Linkedin
+
+Youtube
+
+© 2025 Systemizer Technic (200801005926). All rights reserved.
+
+Back to top button
+
