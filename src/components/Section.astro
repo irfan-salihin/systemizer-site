@@ -1,0 +1,19 @@
+---
+export interface Props {
+  /** Visual background variant of the section band. */
+  variant?: "light" | "surface" | "dark";
+  class?: string;
+}
+
+const { variant = "light", class: className = "" } = Astro.props;
+
+const variants: Record<string, string> = {
+  light: "bg-brand-light text-brand-text",
+  surface: "bg-brand-surface text-brand-text",
+  dark: "bg-brand-dark text-brand-light [&_h1]:text-brand-light [&_h2]:text-brand-light [&_h3]:text-brand-light [&_h4]:text-brand-light [&_h5]:text-brand-light [&_h6]:text-brand-light",
+};
+---
+
+<section class:list={["py-16 md:py-24", variants[variant], className]}>
+  <slot />
+</section>

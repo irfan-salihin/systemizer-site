@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+---
+
+<!--
+  THROWAWAY PAGE — DELETE BEFORE LAUNCH.
+  Exists only to visually verify every base component (Button, Card, Section,
+  Container, Header, Footer) before Phase 4 builds real pages against them.
+  See Phase 9 task in roadmap.md: "Delete the throwaway /style-check/ page".
+-->
+<BaseLayout
+  title="Style check — design system components"
+  description="Throwaway page: visual verification of all base design-system components."
+>
+  <Section variant="light">
+    <Container>
+      <h1 class="text-h1">Style check</h1>
+      <p class="mt-4">
+        Throwaway page rendering every base component. Delete before launch.
+      </p>
+    </Container>
+  </Section>
+
+  <Section variant="light" class="pt-0">
+    <Container>
+      <h2 class="text-h2">Buttons</h2>
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        <Button href="#">Primary</Button>
+        <Button href="#" variant="secondary">Secondary</Button>
+        <Button href="#" variant="ghost">Ghost</Button>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="surface">
+    <Container>
+      <h2 class="text-h2">Cards (on surface section)</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <Card>
+          <h3 class="text-h4">Card one</h3>
+          <p class="mt-2 text-small">
+            Base card with default padding, border, and hover shadow.
+          </p>
+        </Card>
+        <Card>
+          <h3 class="text-h4">Card two</h3>
+          <p class="mt-2 text-small">
+            Cards compose with the type scale tokens.
+          </p>
+        </Card>
+        <Card>
+          <h3 class="text-h4">Card three</h3>
+          <p class="mt-2 text-small">
+            <Button href="#" variant="ghost" class="px-0">Ghost action</Button>
+          </p>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="dark">
+    <Container>
+      <h2 class="text-h2">Dark section</h2>
+      <p class="mt-4">
+        Headings flip to light on the dark variant via the Section component.
+      </p>
+      <div class="mt-6">
+        <Button href="#">Primary on dark</Button>
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="light">
+    <Container>
+      <h2 class="text-h2">Type scale</h2>
+      <div class="mt-6 space-y-3">
+        <p class="text-display font-heading text-brand-secondary">
+          Display 60/70
+        </p>
+        <h1 class="text-h1">H1 45/55</h1>
+        <h2 class="text-h2">H2 35/45</h2>
+        <h3 class="text-h3">H3 26/36</h3>
+        <h4 class="text-h4">H4 22/35</h4>
+        <h5 class="text-h5">H5 18/32</h5>
+        <p class="text-body">Body 16/29 — Roboto 300, color brand-text.</p>
+        <p class="text-small">Small 14/25 — Roboto 300.</p>
+      </div>
+
+      <h2 class="mt-12 text-h2">Color tokens</h2>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {
+          [
+            ["brand-primary", "#0075C9"],
+            ["brand-accent", "#0077C8"],
+            ["brand-primary-dark", "#0066AB"],
+            ["brand-secondary", "#142149"],
+            ["brand-dark", "#131022"],
+            ["brand-light", "#FFFFFF"],
+            ["brand-surface", "#F3F6FF"],
+            ["brand-text", "#666666"],
+            ["brand-warning", "#FF8C00"],
+          ].map(([token, hex]) => (
+            <li class="overflow-hidden rounded-lg border border-brand-surface">
+              <div
+                class="h-16 w-full border-b border-brand-surface"
+                style={`background-color: ${hex}`}
+              />
+              <p class="p-2 text-small">
+                <code>{token}</code>
+                <br />
+                {hex}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
+</BaseLayout>

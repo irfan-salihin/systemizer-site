@@ -1,0 +1,128 @@
+---
+import Container from "./Container.astro";
+import MobileMenu from "./MobileMenu";
+import { NAV_ITEMS } from "../data/nav";
+
+export interface Props {
+  /** Current page path, used to mark the active nav item. */
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-brand-surface bg-brand-light/95 backdrop-blur"
+>
+  <Container>
+    <div class="relative flex h-16 items-center justify-between gap-8">
+      <a
+        href="/"
+        class="flex items-center gap-2 font-heading text-h5 font-normal text-brand-primary no-underline"
+        aria-label="Systemizer Technic — home"
+      >
+        <!-- PLACEHOLDER logo mark: final logo files swapped in during Phase 10 -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 27.6 55.17"
+          class="h-8 w-4"
+          aria-hidden="true"
+        >
+          <g fill="currentColor">
+            <polyline points=".17 39.67 11.05 33.38 13.48 34.82 13.56 47.18"
+            ></polyline>
+            <polyline points=".04 23.75 10.82 30.19 10.75 33.02 0 39.1"
+            ></polyline>
+            <polyline points="27.42 39.74 16.55 33.45 14.11 34.89 14.04 47.25"
+            ></polyline>
+            <polyline points="27.35 23.47 16.48 29.75 14.04 28.31 13.97 15.95"
+            ></polyline>
+            <polyline points=".11 23.4 10.98 29.68 13.41 28.25 13.49 15.88"
+            ></polyline>
+            <polygon points="14.33 15.46 27.41 8.14 27.41 22.96 14.33 15.46"
+            ></polygon>
+            <polygon points="27.23 7.32 14.14 0 14.14 14.82 27.23 7.32"
+            ></polygon>
+            <polygon points="14.51 47.67 27.59 40.35 27.59 55.17 14.51 47.67"
+            ></polygon>
+          </g>
+        </svg>
+        Systemizer Technic
+      </a>
+
+      <!-- Desktop nav: pure static HTML, zero JS shipped -->
+      <nav aria-label="Primary navigation" class="hidden md:block">
+        <ul class="flex items-center gap-1">
+          {
+            NAV_ITEMS.map((item) => (
+              <li class={item.children ? "group relative" : "relative"}>
+                <a
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  class:list={[
+                    "flex items-center gap-1 rounded-md px-3 py-2 text-small no-underline transition-colors",
+                    isActive(item.href)
+                      ? "text-brand-primary"
+                      : "text-brand-secondary hover:text-brand-primary",
+                  ]}
+                >
+                  {item.label}
+                  {item.children && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="h-3 w-3"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 9l6 6 6-6"
+                      />
+                    </svg>
+                  )}
+                </a>
+                {item.children && (
+                  <ul class="invisible absolute left-0 top-full z-50 min-w-44 rounded-md border border-brand-surface bg-brand-light py-2 opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          aria-current={
+                            isActive(child.href) ? "page" : undefined
+                          }
+                          class:list={[
+                            "block px-4 py-2 text-small no-underline transition-colors",
+                            isActive(child.href)
+                              ? "text-brand-primary"
+                              : "text-brand-text hover:bg-brand-surface hover:text-brand-primary",
+                          ]}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Mobile menu: Preact island. client:idle is used (not client:visible)
+           because the hamburger button is always visible in the header, so
+           client:visible would hydrate it immediately anyway; client:idle
+           defers hydration to a browser idle period instead of competing with
+           initial page load, while still guaranteeing the menu works even if
+           the user never scrolls. -->
+      <MobileMenu items={NAV_ITEMS} client:idle />
+    </div>
+  </Container>
+</header>

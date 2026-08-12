@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 /*
- * PLACEHOLDER brand tokens — pending replacement in Phase 10 (Brand & Content Touch-Up).
- * Derived from the current live site's existing look; see src-planning/brand-tokens-placeholder.md.
- * Do NOT treat these as final approved brand colors/fonts.
+ * Design tokens — PLACEHOLDER brand values pending Phase 10 replacement.
+ * Single source of truth for brand colors, type scale, and spacing, mapped
+ * into Tailwind 4's theme via the @theme directive (per tech-stack.md).
+ * Source: src-planning/brand-tokens-placeholder.md
  */
 @theme {
-  /* Colors (from live site's Elementor kit custom properties + logo SVG) */
+  /* Brand colors (from live site's Elementor kit custom properties + logo SVG) */
   --color-brand-primary: #0075c9;
   --color-brand-accent: #0077c8;
   --color-brand-primary-dark: #0066ab;
@@ -22,7 +23,69 @@
   --font-body: Roboto, Arial, Helvetica, sans-serif;
 
   /* Type scale (from live Elementor kit, desktop values) */
-  --text-display: 60px;
-  --text-display--line-height: 70px;
+  --text-display: 3.75rem; /* 60px */
+  --text-display--line-height: 4.375rem; /* 70px */
   --text-display--font-weight: 300;
+  --text-h1: 2.8125rem; /* 45px */
+  --text-h1--line-height: 3.4375rem; /* 55px */
+  --text-h1--font-weight: 300;
+  --text-h2: 2.1875rem; /* 35px */
+  --text-h2--line-height: 2.8125rem; /* 45px */
+  --text-h2--font-weight: 300;
+  --text-h3: 1.625rem; /* 26px */
+  --text-h3--line-height: 2.25rem; /* 36px */
+  --text-h3--font-weight: 300;
+  --text-h4: 1.375rem; /* 22px */
+  --text-h4--line-height: 2.1875rem; /* 35px */
+  --text-h4--font-weight: 300;
+  --text-h5: 1.125rem; /* 18px */
+  --text-h5--line-height: 2rem; /* 32px */
+  --text-h5--font-weight: 300;
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.8125rem; /* 29px */
+  --text-body--font-weight: 300;
+  --text-small: 0.875rem; /* 14px */
+  --text-small--line-height: 1.5625rem; /* 25px */
+  --text-small--font-weight: 300;
+
+  /* Spacing scale (4px base unit) */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+}
+
+/* Base element defaults aligned with the placeholder type scale */
+@layer base {
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: 300;
+    color: var(--color-brand-text);
+    background-color: var(--color-brand-light);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-brand-secondary);
+  }
+
+  a {
+    color: var(--color-brand-primary);
+  }
 }

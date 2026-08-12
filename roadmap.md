@@ -38,15 +38,15 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ## Phase 2 — Design System
 
-**Status: Not Started**
+**Status: Complete**
 
-- [ ] Define design tokens (brand colors, type scale, spacing) in a config file aligned with `tech-stack.md`, mapped into Tailwind's theme
-- [ ] Build base `Button` component with variants
-- [ ] Build base `Card` component
-- [ ] Build base `Section` component
-- [ ] Build base `Container` component
-- [ ] Build responsive `Header`/`Nav` with a mobile menu implemented as a Preact island (hydrated `client:visible` or `client:idle`)
-- [ ] Build `Footer` including newsletter signup, contact email/phone, business hours, and social links (Facebook, LinkedIn, YouTube)
+- [x] Define design tokens (brand colors, type scale, spacing) in a config file aligned with `tech-stack.md`, mapped into Tailwind's theme (`@theme` block in `src/styles/global.css`; placeholder values from `src-planning/brand-tokens-placeholder.md`)
+- [x] Build base `Button` component with variants (`src/components/Button.astro`: primary/secondary/ghost)
+- [x] Build base `Card` component (`src/components/Card.astro`)
+- [x] Build base `Section` component (`src/components/Section.astro`: light/surface/dark variants)
+- [x] Build base `Container` component (`src/components/Container.astro`)
+- [x] Build responsive `Header`/`Nav` with a mobile menu implemented as a Preact island (hydrated `client:visible` or `client:idle`) — `src/components/Header.astro` (static desktop nav, zero JS) + `src/components/MobileMenu.tsx` hydrated `client:idle` (button is always in view, so `client:visible` would hydrate immediately anyway; `client:idle` defers to browser idle time instead). Nav structure in `src/data/nav.ts`. Verified: island SSR'd with serialized props + `client:idle` in built HTML.
+- [x] Build `Footer` including newsletter signup, contact email/phone, business hours, and social links (Facebook, LinkedIn, YouTube) — `src/components/Footer.astro` (newsletter backend wiring is Phase 7)
 
 ---
 
@@ -144,6 +144,7 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 **Status: Not Started**
 
+- [ ] Delete the throwaway `/style-check/` page (`src/pages/style-check.astro`) before launch
 - [ ] Produce DNS cutover plan from WordPress hosting to Cloudflare Pages (record current DNS, nameserver change steps, rollback plan)
 - [ ] Build the 301 redirect map from old WordPress URLs to new static URLs (one entry per existing indexed URL)
 - [ ] Define post-launch monitoring checklist (Lighthouse re-run, Search Console submission, sitemap submission, form submission test, analytics verification)
