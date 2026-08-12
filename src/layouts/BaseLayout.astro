@@ -5,13 +5,16 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
 }
 
-const { title, description = "" } = Astro.props;
+const { title, description = "", ogImage, ogType } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,8 +23,13 @@ const { title, description = "" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    {description && <meta name="description" content={description} />}
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+    />
+    <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

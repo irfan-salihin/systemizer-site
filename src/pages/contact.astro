@@ -1,5 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import JsonLdOrganization from "../components/JsonLdOrganization.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Card from "../components/Card.astro";
@@ -27,6 +28,7 @@ const offices = [
   title="Contact Us"
   description="Contact Systemizer Technic — email hello@systemizerinc.com, call +603-5612 0032, or visit our offices in Subang Jaya, Johor Bahru, and Kota Kinabalu."
 >
+  <JsonLdOrganization slot="head" type="LocalBusiness" />
   <Section variant="light">
     <Container>
       <div class="grid gap-6 md:grid-cols-3">

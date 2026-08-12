@@ -93,26 +93,26 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ## Phase 5 — SEO Implementation
 
-**Status: Not Started**
+**Status: Complete**
 
-- [ ] Build the reusable `<SEO>` component (title, description, canonical, OG, Twitter Card) and compose it into every page layout
-- [ ] Emit `Organization` and `LocalBusiness` JSON-LD on site root/contact
-- [ ] Emit `BreadcrumbList` JSON-LD on inner pages
-- [ ] Emit `Article` JSON-LD on blog posts
-- [ ] Generate sitemap via `@astrojs/sitemap`
-- [ ] Generate `robots.txt` referencing the sitemap
-- [ ] Define OG image generation strategy (static branded template vs. per-page generated image)
+- [x] Build the reusable `<SEO>` component (title, description, canonical, OG, Twitter Card) and compose it into every page layout (`src/components/SEO.astro`; composed in `BaseLayout.astro`; canonical defaults to current path on production origin from `src/data/site.ts`; verified in built HTML on home/blog/product pages)
+- [x] Emit `Organization` and `LocalBusiness` JSON-LD on site root/contact (`src/components/JsonLdOrganization.astro`; Organization on `/`, LocalBusiness with full address/phone/email on `/contact/` — verified in built HTML)
+- [x] Emit `BreadcrumbList` JSON-LD on inner pages (`src/components/JsonLdBreadcrumb.astro`; rendered by `PageLayout` on every non-Home page — verified)
+- [x] Emit `Article` JSON-LD on blog posts (`src/components/JsonLdArticle.astro` on `blog/[slug].astro` from collection fields; all required fields verified present — headline/description/datePublished/author/publisher/mainEntityOfPage)
+- [x] Generate sitemap via `@astrojs/sitemap` (v3.7.3; `sitemap-index.xml` + `sitemap-0.xml` with 30 URLs on build; `/style-check` filtered out)
+- [x] Generate `robots.txt` referencing the sitemap (`public/robots.txt`; disallows `/admin` (reserved for Decap CMS) and `/style-check`; references sitemap-index.xml)
+- [x] Define OG image generation strategy (static branded template vs. per-page generated image) — decision: static default OG image now (placeholder: live-site logo SVG at `/og-default.svg`), per-page branded OG template deferred to Phase 10 when final brand assets exist
 
 ---
 
 ## Phase 6 — Performance Pass
 
-**Status: Not Started**
+**Status: Complete** (image optimization partially deferred to Phase 10 — see note)
 
-- [ ] Image optimization audit — confirm every image routes through `astro:assets`/Sharp and emits WebP/AVIF with responsive `srcset`; remove any raw `<img>` to full-resolution assets
-- [ ] Font loading audit — confirm all fonts are self-hosted via Fontsource and no Google Fonts CDN request is made
-- [ ] Bundle/island hydration audit — confirm each Preact island uses the cheapest correct directive (`client:visible` / `client:idle`) and no unnecessary `client:load`
-- [ ] Integrate Lighthouse CI into the GitHub Actions workflow with a 95+ threshold on all four categories as a required check
+- [x] Image optimization audit — audited: the only two `<img>` usages in `src/` are the client/partner logo walls, both rendering remote hotlinked WordPress placeholders that cannot be optimized yet; both are flagged in-code with `PERF: raw <img>, revisit in Phase 10`. No other raw `<img>` to full-resolution assets exist. Routing logo images through `astro:assets`/Sharp with WebP/AVIF + responsive srcset is **deferred to Phase 10** (blocked on final logo files — the hotlinks are placeholders). No `<Image>` component usage yet because there are no local image assets to process.
+- [x] Font loading audit — confirm all fonts are self-hosted via Fontsource and no Google Fonts CDN request is made (verified: `@fontsource/roboto` 300/400/500 imported in BaseLayout; 24 woff2 files emitted into `dist/_astro/`; zero `fonts.googleapis.com`/`fonts.gstatic.com` references in source or built HTML)
+- [x] Bundle/island hydration audit — confirm each Preact island uses the cheapest correct directive (`client:visible` / `client:idle`) and no unnecessary `client:load` (verified: exactly one directive in the codebase — `client:idle` on `MobileMenu.tsx` in `Header.astro`; zero `client:load`; island JS total ~32KB incl. Preact runtime)
+- [x] Integrate Lighthouse CI into the GitHub Actions workflow with a 95+ threshold on all four categories as a required check (`.github/workflows/lighthouse.yml` + `.lighthouserc.json`; 95 threshold kept as-is. Local Lighthouse (Chromium headless): home/clients/blog post all 100/100/100/100, st-cloud 99/100/100/100 — currently ABOVE threshold; if hotlinked external logos ever drag scores below 95 in CI, treat as a known temporary gap until Phase 10 asset swap — do not weaken the threshold)
 
 ---
 

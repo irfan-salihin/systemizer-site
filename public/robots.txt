@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# /admin is reserved for the Decap CMS (not yet built); /style-check is a
+# throwaway design-system page scheduled for deletion in Phase 9.
+Disallow: /admin
+Disallow: /style-check
+
+Sitemap: https://systemizerinc.com/sitemap-index.xml

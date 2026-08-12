@@ -1,0 +1,45 @@
+---
+import { SITE } from "../data/site";
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  /** Canonical URL of the article page. */
+  url: string;
+  image?: string;
+}
+
+const { title, description, pubDate, updatedDate, author, url, image } =
+  Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  author: {
+    "@type": "Organization",
+    name: author,
+    url: SITE.origin,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.legalName,
+    url: SITE.origin,
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
+  ...(image && {
+    image: image.startsWith("http") ? image : new URL(image, SITE.origin).href,
+  }),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

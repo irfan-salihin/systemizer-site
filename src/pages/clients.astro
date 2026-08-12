@@ -38,7 +38,9 @@ for (const client of clients) {
             <ul class="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
               {entries.map((client) => (
                 <li class="flex flex-col items-center gap-3 rounded-lg border border-brand-surface bg-brand-light p-4">
-                  {/* Placeholder: hotlinked live-site logo; optimized local assets are Phase 6/10 */}
+                  {/* PERF: raw <img>, revisit in Phase 10 — remote hotlinked
+                      WordPress placeholder; cannot route through astro:assets until
+                      the logo files are downloaded/finalized (deferred asset work). */}
                   <img
                     src={client.data.logo}
                     alt={`${client.data.name} logo`}

@@ -119,4 +119,9 @@
     font-weight: 500;
     color: var(--color-brand-secondary);
   }
+  /* WCAG: links inside prose must not rely on color alone */
+  .prose-like a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 }

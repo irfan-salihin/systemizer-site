@@ -1,0 +1,31 @@
+---
+import { SITE } from "../data/site";
+
+export interface Props {
+  type: "Organization" | "LocalBusiness";
+}
+
+const { type } = Astro.props;
+
+const base = {
+  "@context": "https://schema.org",
+  "@type": type,
+  "@id": `${SITE.origin}/#organization`,
+  name: SITE.legalName,
+  alternateName: SITE.name,
+  url: SITE.origin,
+  email: SITE.email,
+  telephone: SITE.phoneIntl,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.locality,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.country,
+  },
+  sameAs: [SITE.social.facebook, SITE.social.linkedin, SITE.social.youtube],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(base)} />

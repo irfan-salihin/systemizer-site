@@ -25,7 +25,9 @@ const partners = (await getCollection("partners")).sort((a, b) =>
         {
           partners.map((partner) => (
             <li class="flex flex-col items-center gap-3 rounded-lg border border-brand-surface bg-brand-light p-4">
-              {/* Placeholder: hotlinked live-site logo; optimized local assets are Phase 6/10 */}
+              {/* PERF: raw <img>, revisit in Phase 10 — remote hotlinked
+                  WordPress placeholder; cannot route through astro:assets until
+                  the logo files are downloaded/finalized (deferred asset work). */}
               <img
                 src={partner.data.logo}
                 alt={`${partner.data.name} logo`}

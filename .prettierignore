@@ -8,3 +8,6 @@ pnpm-lock.yaml
 
 # Raw audit files — preserved verbatim, not reformatted
 content-audit/
+
+# Prettier mangles MDX {/* */} comments into {/_ _/}; content files are data, not code
+src/content/

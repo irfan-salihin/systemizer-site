@@ -12,9 +12,12 @@ const base =
 
 const variants: Record<string, string> = {
   primary: "bg-brand-primary text-brand-light hover:bg-brand-primary-dark",
+  // brand-primary-dark (#0066AB) text keeps ≥4.5:1 contrast on the surface/light
+  // backgrounds (brand-primary #0075C9 on #F3F6FF is only ~4.3:1 — fails WCAG AA).
   secondary:
-    "border-2 border-brand-primary bg-transparent text-brand-primary hover:bg-brand-surface",
-  ghost: "bg-transparent text-brand-primary underline-offset-4 hover:underline",
+    "border-2 border-brand-primary bg-transparent text-brand-primary-dark hover:bg-brand-surface",
+  ghost:
+    "bg-transparent text-brand-primary-dark underline-offset-4 hover:underline",
 };
 ---
 
