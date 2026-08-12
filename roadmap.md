@@ -52,15 +52,15 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ## Phase 3 — Content Collections & Schemas
 
-**Status: Not Started**
+**Status: Complete**
 
-- [ ] Define Zod schema for `blog` collection (title, description, published date, updated date, author, tags, hero image, OG image, etc.)
-- [ ] Define Zod schema for `success-stories` collection (client name, industry, challenge, solution, outcome, testimonial, logo ref, etc.)
-- [ ] Define Zod schema for `solutions` collection (ST-Infra, ST-Automation, ST-Cloud, ST-Services)
-- [ ] Define Zod schema for `products` collection (Helix by ST: ST Overwatch, ST TrueState, STackNode, STackBot)
-- [ ] Define Zod schema for `clients` collection (name, logo, URL, industry)
-- [ ] Define Zod schema for `partners` collection (name, logo, URL, description)
-- [ ] Migrate/rewrite existing page copy from the Phase 0 inventory into MDX content files, one file per entry, validated against its schema
+- [x] Define Zod schema for `blog` collection (title, description, pubDate, updatedDate, author, tags, heroImage, ogImage, draft) — `src/content.config.ts`; 8 posts migrated from live site
+- [x] Define Zod schema for `success-stories` collection (clientName, industry, challenge, solutionSummary, outcome, testimonialQuote, testimonialAuthor, logoRef, featured, slug) — 3 entries migrated (GVE Asia, Hess E&P Malaysia, AIA Berhad)
+- [x] Define Zod schema for `solutions` collection (title, tagline, description, icon, order) — 4 entries migrated (ST-Infra, ST-Automation, ST-Cloud, ST-Services)
+- [x] Define Zod schema for `products` collection (title, tagline, description, icon, order) — 4 entries migrated (ST Overwatch, ST TrueState, STackNode, STackBot)
+- [x] Define Zod schema for `clients` collection (name, logo, url, industry) — 116 entries migrated from the live logo wall (64 named; 52 carry a MIGRATION FLAG comment: live site only exposed bare filenames, real names unrecoverable from audit)
+- [x] Define Zod schema for `partners` collection (name, logo, url, description) — 11 entries migrated (VAST Data duplicate tile consolidated; names mapped from logo filenames)
+- [x] Migrate/rewrite existing page copy from the Phase 0 inventory into MDX content files, one file per entry, validated against its schema — 146 entries total; `astro check` 0 errors (content sync validates every entry). Unmappable copy flagged in-file via MIGRATION FLAG comments (ST-MMS TablePress tier tables in st-services; duplicated Key-Features blocks on st-truestate/stacknode/stackbot; filename-only client logos). NOTE: client/partner `logo` fields currently hot-link the live WordPress uploads as placeholders — asset download/optimization happens in Phase 6 (image optimization) and final logos swap in Phase 10.
 
 ---
 
