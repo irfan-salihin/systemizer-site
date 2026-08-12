@@ -23,16 +23,16 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ## Phase 1 — Project Scaffolding
 
-**Status: In Progress**
+**Status: Complete**
 
-- [ ] Initialize Astro 5 project with TypeScript strict mode enabled
-- [ ] Use pnpm as the package manager; commit `pnpm-lock.yaml`
-- [ ] Install and configure Tailwind CSS 4 via the Vite plugin
-- [ ] Create folder structure: `src/components`, `src/layouts`, `src/content`, `src/pages`
-- [ ] Configure ESLint with Astro plugin
-- [ ] Configure Prettier with Astro plugin
-- [ ] Configure `astro check` (typecheck) and confirm it runs clean on a scaffolded page
-- [ ] Create the GitHub repo and push the initial commit
+- [x] Initialize Astro 5 project with TypeScript strict mode enabled (astro 5.18.2, typescript 5.9.3, `extends: astro/tsconfigs/strict`)
+- [x] Use pnpm as the package manager; commit `pnpm-lock.yaml` (pnpm 10.14.0, lockfile committed)
+- [x] Install and configure Tailwind CSS 4 via the Vite plugin (tailwindcss 4.3.3 + @tailwindcss/vite 4.3.3 in `astro.config.mjs`; placeholder brand tokens wired into `@theme` in `src/styles/global.css`)
+- [x] Create folder structure: `src/components`, `src/layouts`, `src/content`, `src/pages`
+- [x] Configure ESLint with Astro plugin (`eslint.config.js`: eslint-plugin-astro recommended + typescript-eslint; `pnpm lint` passes)
+- [x] Configure Prettier with Astro plugin (`.prettierrc.json` with prettier-plugin-astro; `pnpm format:check` passes)
+- [x] Configure `astro check` (typecheck) and confirm it runs clean on a scaffolded page (0 errors, 0 warnings, 0 hints; `pnpm build` succeeds)
+- [x] Create the GitHub repo and push the initial commit (github.com/irfan-salihin/systemizer-site, commit `c51f038` on `main`)
 
 ---
 
