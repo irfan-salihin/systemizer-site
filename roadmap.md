@@ -159,6 +159,7 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 - [ ] Replace placeholder color tokens with final approved brand colors
 - [ ] Replace placeholder typography with final approved brand fonts
+- [ ] Identify and verify the 52 flagged client logos, or remove permanently if unidentifiable
 - [ ] Swap in final logo files (all required formats/sizes: favicon, OG image, header logo, footer logo)
 - [ ] Review all Phase 3 content-collection copy against final brand voice/tone guidelines and revise as needed
 - [ ] Re-run Lighthouse CI and visual QA after asset swap to confirm no regressions

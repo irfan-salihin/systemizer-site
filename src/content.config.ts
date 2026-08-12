@@ -64,6 +64,9 @@ const clients = defineCollection({
     logo: z.string(),
     url: z.string().url().optional(),
     industry: z.string().optional(),
+    // true = identity confirmed from the live site's labeled gallery tile;
+    // false/omitted = filename-only entry (MIGRATION FLAG backlog), hidden from the Clients page.
+    verified: z.boolean().default(false),
   }),
 });
 
