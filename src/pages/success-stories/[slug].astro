@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import Section from "../../components/Section.astro";
+import Container from "../../components/Container.astro";
+import Button from "../../components/Button.astro";
+
+export async function getStaticPaths() {
+  const stories = await getCollection("success-stories");
+  return stories.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<PageLayout
+  title={entry.data.clientName}
+  tagline={entry.data.industry}
+  description={entry.data.challenge.slice(0, 155)}
+  eyebrow="Success Stories"
+>
+  <Section variant="light">
+    <Container class="prose-like max-w-3xl">
+      <Content />
+      {
+        entry.data.testimonialQuote && (
+          <blockquote class="mt-8 border-l-4 border-brand-primary pl-6">
+            <p class="text-h5 text-brand-secondary">
+              {entry.data.testimonialQuote}
+            </p>
+            {entry.data.testimonialAuthor && (
+              <footer class="mt-2 text-small">
+                — {entry.data.testimonialAuthor}
+              </footer>
+            )}
+          </blockquote>
+        )
+      }
+    </Container>
+  </Section>
+  <Section variant="surface">
+    <Container class="flex flex-wrap items-center justify-between gap-4">
+      <p class="text-h5 text-brand-secondary">
+        Read more of our client success stories.
+      </p>
+      <Button href="/success-stories/" variant="secondary"
+        >All Success Stories</Button
+      >
+    </Container>
+  </Section>
+</PageLayout>

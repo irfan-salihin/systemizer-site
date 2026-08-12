@@ -1,0 +1,79 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Button from "../components/Button.astro";
+
+const services = [
+  "Infrastructure Audit",
+  "Capacity Planning",
+  "Technology Roadmap",
+  "DR Planning",
+  "Cloud Integration",
+  "Migration",
+  "IT Health Monitoring",
+  "IT Decommissioning",
+];
+---
+
+<PageLayout
+  title="IT Consulting"
+  tagline="Consultancy is the bridge between challenges and solutions."
+  description="Systemizer Technic's IT consulting services provide expert guidance to help clients align their technology strategies with their business goals, through strategic, architectural, operational, and implementation planning."
+>
+  <Section variant="light">
+    <Container class="max-w-3xl">
+      <p>
+        Systemizer Technic's IT consulting services provide expert guidance to
+        help clients align their technology strategies with their business
+        goals. We support IT initiatives through strategic, architectural,
+        operational, and implementation planning. Our services include assessing
+        IT needs, designing systems with emerging technologies, evaluating
+        operational efficiency, and advising on solution deployment.
+      </p>
+      <p class="mt-4">
+        Our unbiased experts offer guidance to enhance your IT operations,
+        focusing on aligning the best technology solutions with your specific
+        goals. With extensive industry experience, we understand the difference
+        between theoretical and practical solutions. Our approach prioritizes
+        what truly works for you, not just the latest technology.
+      </p>
+      <p class="mt-4">
+        In a rapidly evolving technological landscape, we ensure you have access
+        to the most innovative tools. Our commitment to your success drives us
+        to continually refine our strategies and stay updated on industry
+        trends.
+      </p>
+      <p class="mt-4">
+        Collaboration is at the heart of our philosophy. We see ourselves as
+        partners in your journey toward IT excellence, providing support and
+        expertise at every step. By building a relationship based on trust and
+        mutual respect, we empower you to achieve and exceed your goals.
+      </p>
+      <p class="mt-4">
+        Together, we can transform your IT vision into reality, propelling your
+        business forward and setting you apart from the competition. Let's
+        embark on this transformative journey and unlock the full potential of
+        your IT operations.
+      </p>
+    </Container>
+  </Section>
+
+  <Section variant="surface">
+    <Container>
+      <h2 class="text-h2">Our Consulting Services</h2>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          services.map((service) => (
+            <li class="rounded-lg border border-brand-surface bg-brand-light p-4 text-center font-medium text-brand-secondary">
+              {service}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-8">
+        <Button href="/contact/">Request a Quote</Button>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

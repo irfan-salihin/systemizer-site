@@ -1,26 +1,187 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+
+const stories = await getCollection("success-stories");
+const truncate = (s: string, n: number) =>
+  s.length > n ? s.slice(0, s.lastIndexOf(" ", n)) + "…" : s;
 ---
 
 <BaseLayout
-  title="Systemizer Technic — Leading-edge IT technology services"
-  description="Leading-edge IT technology services custom-tailored for your business."
+  title="Home - Systemizer Technic"
+  description="Leading-edge IT technology services custom-tailored for your business. Systemizer Technic specializes in helping companies modernise technology, reimagine processes and transform experiences."
 >
-  <div class="mx-auto max-w-4xl px-6 py-24">
-    <h1 class="text-h1">
-      Systemizer Technic Sdn Bhd — website rebuild scaffold
-    </h1>
-    <p class="mt-4">
-      Astro 5 + TypeScript strict + Tailwind CSS 4 scaffold. Placeholder brand
-      tokens are wired into the Tailwind theme (see
-      <code>src/styles/global.css</code>) pending Phase 10 replacement with
-      final brand assets.
-    </p>
-    <p class="mt-4">
-      <a class="underline" href="/style-check/">Design-system style check</a> ·
-      <a class="underline" href="https://systemizerinc.com/"
-        >Current live site</a
-      >
-    </p>
-  </div>
+  <!-- Hero -->
+  <Section variant="dark" class="py-24 md:py-32">
+    <Container class="max-w-4xl">
+      <h1 class="text-display">
+        Leading-edge IT technology services
+        <span class="text-brand-primary">custom-tailored</span> for your business
+      </h1>
+      <p class="mt-6 max-w-2xl">
+        Systemizer Technic specializes in helping companies modernise
+        technology, reimagine processes and transform experiences, so they stay
+        ahead of the curve in the fast-changing world. We're on a mission to
+        modernise and drive innovation with technology.
+      </p>
+      <p class="mt-4 max-w-2xl">
+        We help unleash the power of your digital transformation in a way that
+        streamlines your operations, supercharges your growth, and puts your
+        business at the forefront of leading-edge technology.
+      </p>
+      <div class="mt-8">
+        <Button href="/contact/">Contact Us</Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Vision -->
+  <Section variant="light">
+    <Container class="max-w-3xl">
+      <h2 class="text-h2">Our Vision</h2>
+      <p class="mt-4">
+        We reshape digital transformation in a way that enriches our clients'
+        businesses.
+      </p>
+      <p class="mt-4">
+        We are focused on helping brands grow through digital transformation
+        services. We bring real solutions to each client's problems through a
+        deep understanding of their market, solution, and vision.
+      </p>
+    </Container>
+  </Section>
+
+  <!-- What We Do -->
+  <Section variant="surface">
+    <Container class="max-w-3xl">
+      <h2 class="text-h2">What We Do</h2>
+      <p class="mt-4">
+        As an innovative solution provider, we provide a range of services
+        designed to take the heavy lifting off your hands.
+      </p>
+      <p class="mt-4">
+        We are Systemizer Technic. We engineer modern innovative IT solutions
+        for businesses of every size. We focus on experience and results, with
+        an emphasis on creating value. We provide our clients with high levels
+        of operational excellence through flexible scaling. Our processes
+        include leveraging specialized skill sets to help your business curate a
+        cohesive partner ecosystem for growth opportunities.
+      </p>
+      <p class="mt-4">
+        We take pride in maintaining an open dialogue with every customer to
+        ensure we understand their needs. Your company goals and growth drive
+        everything from design solutions up to final execution plan
+        implementation, and we work tirelessly to ensure that they seamlessly
+        complement each other to create true long-term value.
+      </p>
+      <p class="mt-4">
+        We work closely with your team to understand your digital transformation
+        needs. This leads us to design and develop a comprehensive,
+        custom-tailored IT Technology services plan aligned with your digital
+        priorities.
+      </p>
+      <div class="mt-6">
+        <Button href="/solutions/" variant="secondary">See All Solutions</Button
+        >
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Solutions teaser -->
+  <Section variant="light">
+    <Container class="max-w-3xl">
+      <h2 class="text-h2">
+        Innovative IT Technology Services Designed To Supercharge Your Growth
+      </h2>
+      <p class="mt-4">
+        At Systemizer Technic, we simplify your technology solutions through
+        innovative, best-in-class hardware and software support services. Our
+        team has the experience and expertise to equip your business with the
+        tools and technology to streamline your scalability.
+      </p>
+      <div class="mt-6">
+        <Button href="/solutions/" variant="secondary"
+          >View All solutions</Button
+        >
+      </div>
+
+      <h3 class="mt-12 text-h3">Innovative Solutions, Thoughtful Design</h3>
+      <p class="mt-4">
+        It's not just about the technology anymore – it all starts with a
+        consultation. It continues through to the implementation of your needs
+        for support services explicitly tailored toward your business goals to
+        create seamless scalability. Driven by innovation, we offer solutions to
+        help you succeed. We collaborate with you to provide the most advanced,
+        sophisticated yet practical IT solutions and support you need to grow
+        your business. The team at Systemizer Technic has vast experience in
+        various industries and can provide qualified specialists who know how
+        bests to handle every aspect of your needs, whether you're looking for
+        IT solutions support, enterprise services, or maintenance support
+        services—we've got you covered.
+      </p>
+      <div class="mt-6">
+        <Button href="/solutions/" variant="secondary"
+          >View All solutions</Button
+        >
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Success Stories -->
+  <Section variant="surface">
+    <Container>
+      <h2 class="text-h2">Read our Success Stories</h2>
+      <p class="mt-4 max-w-3xl">
+        We have helped countless clients across a broad spectrum of industries
+        revolutionize their IT solutions through innovative and leading-edge
+        technology. Discover some of them below.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {
+          stories.map((story) => (
+            <Card>
+              <h3 class="text-h5">{story.data.clientName}</h3>
+              <p class="mt-3 text-small">
+                {truncate(story.data.challenge, 120)}
+              </p>
+              <p class="mt-4">
+                <Button
+                  href={`/success-stories/${story.data.slug}/`}
+                  variant="ghost"
+                  class="px-0"
+                >
+                  View Success Story
+                </Button>
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+      <div class="mt-8">
+        <Button href="/success-stories/" variant="secondary">
+          See all Success Stories
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Clients -->
+  <Section variant="light">
+    <Container class="max-w-3xl">
+      <h2 class="text-h2">Clients we have worked for</h2>
+      <p class="mt-4">
+        We have had the opportunity to work with clients from various
+        industries, large and small. We treat each client with the same care and
+        attention, to ensure that the service we provide always meets their
+        requirements.
+      </p>
+      <div class="mt-6">
+        <Button href="/clients/" variant="secondary">Our Clients</Button>
+      </div>
+    </Container>
+  </Section>
 </BaseLayout>

@@ -1,0 +1,174 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+
+const values = [
+  {
+    name: "Leadership",
+    text: "We develop leaders within Systemizer Technic. A team of people who lead by example and go above and beyond to ensure every need of every client is met and managed.",
+  },
+  {
+    name: "Integrity",
+    text: "Everything we do at Systemizer Technic is done with integrity, honesty, and professionalism, backed by our strong principles to create trust with every client.",
+  },
+  {
+    name: "Teamwork",
+    text: "Our holistic, collaborative approach is deeply ingrained in everything we do. We value collaboration and diversity as part of our inclusive team throughout all our processes.",
+  },
+  {
+    name: "Futurist",
+    text: "We're continually striving to stay ahead of the curve on technology by using various leading-edge tools and strategies to analyse trends in the future of technology. We make the future possible through innovation and ingenuity.",
+  },
+  {
+    name: "Passion",
+    text: "We're passionate about everything we do at Systemizer Technic. Our team is committed to providing that exciting and passionate experience for every customer.",
+  },
+];
+
+const leaders = [
+  {
+    name: "Hairie Zairel Oh",
+    role: "Managing Director",
+    email: "hairie@systemizerinc.com",
+  },
+  {
+    name: "Stuart Surridge",
+    role: "Director, Client Solutions Design & Delivery",
+    email: "stuart.surridge@systemizerinc.com",
+  },
+  {
+    name: "Yvonne Thew",
+    role: "Director of Finance || Business Management & Administrative Services",
+    email: "yvonne.thew@systemizerinc.com",
+  },
+  {
+    name: "Hasnawi haris",
+    role: "Director of Sales",
+    email: "mohd-hasnawi@systemizerinc.com",
+  },
+  {
+    name: "Juniza Moin",
+    role: "Manager – Enterprise || Business Management & Administrative Services",
+    email: "juniza.abd-moin@systemizerinc.com",
+  },
+  {
+    name: "Mohd Firdaus Abdul Wahab",
+    role: "Technical Manager",
+    email: "firdaus.abdul-wahab@systemizerinc.com",
+  },
+];
+---
+
+<PageLayout
+  title="About Us"
+  description="Systemizer Technic is one of the leading enterprise solutions companies in Malaysia, powered by a team of qualified and experienced IT professionals with over a decade of industry experience."
+>
+  <Section variant="light">
+    <Container class="max-w-3xl">
+      <p>
+        Systemizer Technic is one of the leading enterprise solutions companies
+        in Malaysia. Powered by a team of qualified and experienced IT
+        professionals, coupled with over a decade of industry experience,
+        Systemizer Technic has successfully supported its clients nationwide.
+      </p>
+
+      <h2 class="mt-10 text-h2">The Company</h2>
+      <p class="mt-4">
+        Incorporated in 2008 as the YTY Group Industries' IT arm saw us managing
+        several mission-critical servers and applications. In 2010, we moved to
+        become independent, to grow and evolve into a prominent solution
+        integrator for Infrastructure System Solutions. In 2016, Systemizer
+        Technic became a subsidiary of the Setia Ibarat Group, with a widened
+        portfolio of offerings designed to support the ever-growing need for
+        reliable IT support services.
+      </p>
+      <p class="mt-4">
+        With an extensive portfolio of technology solutions under one roof, we
+        help our clients to modernize technology, reimagine processes and
+        transform experiences so they can stay ahead in our fast-changing world.
+        Our expertise is driven by out-of-the-box thinking and technical
+        knowledge, enabling the team to be ready to deliver a full range of data
+        center solutions designed to meet our clients' digital needs.
+      </p>
+      <div class="mt-6">
+        <Button href="/contact/">Contact Us</Button>
+      </div>
+
+      <h2 class="mt-12 text-h2">Mission &amp; Values</h2>
+      <p class="mt-4">
+        At Systemizer Technic, our mission is to become the preferred technology
+        services provider delivering leading-edge, innovative technology
+        solutions to all enterprises. We understand our client's needs and are
+        committed to their success from day one.
+      </p>
+    </Container>
+  </Section>
+
+  <Section variant="surface">
+    <Container>
+      <h2 class="text-h2">Our Values</h2>
+      <p class="mt-4 max-w-3xl">
+        Our core values drive us throughout everything we do, every service we
+        offer, and every client relationship we develop and build.
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          values.map((v) => (
+            <Card>
+              <h3 class="text-h5">{v.name}</h3>
+              <p class="mt-3 text-small">{v.text}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="light">
+    <Container>
+      <h2 class="text-h2">Leadership Team</h2>
+      <p class="mt-4 max-w-3xl">
+        With a team of leaders who think and dream big, we're professionals in
+        our rights. With the support from our deployment side, you're assured
+        efficiency at all times.
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          leaders.map((person) => (
+            <Card>
+              <h3 class="text-h5">{person.name}</h3>
+              <p class="mt-1 text-small">{person.role}</p>
+              <p class="mt-2 text-small">
+                <a href={`mailto:${person.email}`}>{person.email}</a>
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <Section variant="surface">
+    <Container class="max-w-3xl">
+      <h2 class="text-h2">Careers</h2>
+      <p class="mt-4">
+        Become part of our digital transformation team. We believe the best work
+        comes from passionate and innovative minds. Systemizer Technic will help
+        you find a meaningful career path that aligns with your personal goals,
+        abilities, and interests to achieve your full potential.
+      </p>
+      <p class="mt-4">
+        We are continuously expanding, and regard our employees as a vital asset
+        in our organization to help us transcend through technology. With our
+        scale and diversity across industries and technologies – you can apply
+        your skills and fuel your passion here.
+      </p>
+      <div class="mt-6">
+        <Button href="/contact/">Apply Now</Button>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import Section from "../../components/Section.astro";
+import Container from "../../components/Container.astro";
+import Card from "../../components/Card.astro";
+import Button from "../../components/Button.astro";
+
+const stories = await getCollection("success-stories");
+const truncate = (s: string, n: number) =>
+  s.length > n ? s.slice(0, s.lastIndexOf(" ", n)) + "…" : s;
+---
+
+<PageLayout
+  title="Success Stories"
+  tagline="Read our Success Stories"
+  description="We have helped countless clients across a broad spectrum of industries revolutionize their IT solutions through innovative and leading-edge technology."
+>
+  <Section variant="light">
+    <Container>
+      <p class="max-w-3xl">
+        We have helped countless clients across a broad spectrum of industries
+        revolutionize their IT solutions through innovative and leading-edge
+        technology. Discover some of them below.
+      </p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          stories.map((story) => (
+            <Card>
+              <h2 class="text-h4">{story.data.clientName}</h2>
+              <p class="mt-1 text-small text-brand-primary">
+                {story.data.industry}
+              </p>
+              <p class="mt-3 text-small">
+                {truncate(story.data.challenge, 160)}
+              </p>
+              <p class="mt-4">
+                <Button
+                  href={`/success-stories/${story.data.slug}/`}
+                  variant="ghost"
+                  class="px-0"
+                >
+                  View Success Story
+                </Button>
+              </p>
+            </Card>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

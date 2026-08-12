@@ -1,0 +1,25 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Button from "../components/Button.astro";
+---
+
+<PageLayout
+  title="Page Not Found"
+  description="The page you requested could not be found."
+>
+  <Section variant="light" class="py-24">
+    <Container class="max-w-2xl text-center">
+      <p class="text-display font-heading text-brand-primary">404</p>
+      <h1 class="mt-4 text-h1">Page not found</h1>
+      <p class="mt-4">
+        The page you are looking for doesn't exist or has been moved.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <Button href="/">Back to Home</Button>
+        <Button href="/contact/" variant="secondary">Contact Us</Button>
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

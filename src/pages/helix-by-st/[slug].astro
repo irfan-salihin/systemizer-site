@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import Section from "../../components/Section.astro";
+import Container from "../../components/Container.astro";
+import Button from "../../components/Button.astro";
+
+export async function getStaticPaths() {
+  const products = await getCollection("products");
+  return products.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<PageLayout
+  title={entry.data.title}
+  tagline={entry.data.tagline}
+  description={entry.data.description}
+  eyebrow="Helix by ST"
+>
+  <Section variant="light">
+    <Container class="prose-like max-w-3xl">
+      <Content />
+    </Container>
+  </Section>
+  <Section variant="surface">
+    <Container class="flex flex-wrap items-center justify-between gap-4">
+      <p class="text-h5 text-brand-secondary">Contact us for a consultation.</p>
+      <div class="flex gap-4">
+        <Button href="/contact/">Request a Demo</Button>
+        <Button href="/helix-by-st/" variant="secondary"
+          >&lt; Back to Helix</Button
+        >
+      </div>
+    </Container>
+  </Section>
+</PageLayout>

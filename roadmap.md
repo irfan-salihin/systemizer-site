@@ -66,28 +66,28 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ## Phase 4 — Core Pages
 
-**Status: Not Started**
+**Status: Complete**
 
-- [ ] Home page
-- [ ] About Us page
-- [ ] Solutions hub page
-- [ ] Solutions sub-page: ST-Infra
-- [ ] Solutions sub-page: ST-Automation
-- [ ] Solutions sub-page: ST-Cloud
-- [ ] Solutions sub-page: ST-Services
-- [ ] Helix by ST hub page
-- [ ] Product page: ST Overwatch
-- [ ] Product page: ST TrueState
-- [ ] Product page: STackNode
-- [ ] Product page: STackBot
-- [ ] IT Consulting page
-- [ ] Success Stories hub page
-- [ ] Individual case study template (used for GVE Asia, Hess E&P Malaysia, AIA Berhad, and future entries)
-- [ ] Clients page (logo wall)
-- [ ] Partners page (logo wall)
-- [ ] Contact page with a working form (markup only in this phase; backend wiring is Phase 7)
-- [ ] Custom 404 page
-- [ ] Privacy Policy page (PDPA-compliant, Malaysia)
+- [x] Home page (`src/pages/index.astro`; hero, vision, what-we-do, solutions teaser, success-stories grid from collection, clients teaser)
+- [x] About Us page (`src/pages/about-us.astro`; company, mission, values cards, leadership team, careers — migrated from content-audit/about-us.md)
+- [x] Solutions hub page (`src/pages/solutions/index.astro`; 4 solution cards from collection + 4 solution-category cards from live copy)
+- [x] Solutions sub-page: ST-Infra (`src/pages/solutions/[slug].astro` template renders all 4 collection entries; verified 200)
+- [x] Solutions sub-page: ST-Automation (same template; verified 200)
+- [x] Solutions sub-page: ST-Cloud (same template; verified 200)
+- [x] Solutions sub-page: ST-Services (same template; verified 200)
+- [x] Helix by ST hub page (`src/pages/helix-by-st/index.astro`; 4 product cards from collection + live hub copy)
+- [x] Product page: ST Overwatch (`src/pages/helix-by-st/[slug].astro` template renders all 4 collection entries; verified 200)
+- [x] Product page: ST TrueState (same template; verified 200)
+- [x] Product page: STackNode (same template; verified 200)
+- [x] Product page: STackBot (same template; verified 200)
+- [x] IT Consulting page (`src/pages/it-consulting.astro`; migrated from content-audit/it-consulting.md)
+- [x] Success Stories hub page (`src/pages/success-stories/index.astro`; cards from collection)
+- [x] Individual case study template (used for GVE Asia, Hess E&P Malaysia, AIA Berhad, and future entries) (`src/pages/success-stories/[slug].astro`; all 3 verified 200)
+- [x] Clients page (logo wall) (`src/pages/clients.astro`; renders only `verified: true` entries — 64 shown, grouped by industry; 52 flagged entries excluded)
+- [x] Partners page (logo wall) (`src/pages/partners.astro`; 11 partners from collection)
+- [x] Contact page with a working form (markup only in this phase; backend wiring is Phase 7) (`src/pages/contact.astro`; name/email/subject/message fields, preventDefault stub; offices + phone/support numbers from audit)
+- [x] Custom 404 page (`src/pages/404.astro`)
+- [x] Privacy Policy page (PDPA-compliant, Malaysia) (`src/pages/privacy-policy.astro`)
 
 ---
 

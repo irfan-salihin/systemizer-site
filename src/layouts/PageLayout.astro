@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  /** Small overline label above the title, e.g. "Solutions" or "Helix by ST". */
+  eyebrow?: string;
+  tagline?: string;
+}
+
+const { title, description = "", eyebrow, tagline } = Astro.props;
+---
+
+<BaseLayout title={`${title} - Systemizer Technic`} description={description}>
+  <Section variant="dark" class="py-20 md:py-28">
+    <Container>
+      {
+        eyebrow && (
+          <p class="text-small uppercase tracking-widest text-brand-primary">
+            {eyebrow}
+          </p>
+        )
+      }
+      <h1 class="mt-2 text-h1">{title}</h1>
+      {
+        tagline && (
+          <p class="mt-4 max-w-3xl text-h5 text-brand-light/80">{tagline}</p>
+        )
+      }
+    </Container>
+  </Section>
+  <slot />
+</BaseLayout>

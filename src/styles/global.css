@@ -89,3 +89,34 @@
     color: var(--color-brand-primary);
   }
 }
+
+/* Shared typographic defaults for rendered MDX content bodies */
+@layer components {
+  .prose-like h2 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    margin-top: var(--spacing-10);
+    margin-bottom: var(--spacing-4);
+  }
+  .prose-like h3 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-3);
+  }
+  .prose-like p,
+  .prose-like ul {
+    margin-bottom: var(--spacing-4);
+  }
+  .prose-like ul {
+    list-style: disc;
+    padding-left: var(--spacing-6);
+  }
+  .prose-like li {
+    margin-bottom: var(--spacing-2);
+  }
+  .prose-like strong {
+    font-weight: 500;
+    color: var(--color-brand-secondary);
+  }
+}

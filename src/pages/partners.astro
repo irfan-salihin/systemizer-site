@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+
+const partners = (await getCollection("partners")).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name),
+);
+---
+
+<PageLayout
+  title="Our Partners"
+  description="We work with cutting-edge solution providers to ensure we provide the most up-to-date, sophisticated technology available for your business. Our strategic partnerships allow us to provide best-in-class solutions for every client."
+>
+  <Section variant="light">
+    <Container>
+      <p class="max-w-3xl">
+        We work with cutting-edge solution providers to ensure we provide the
+        most up-to-date, sophisticated technology available for your business.
+        Our strategic partnerships allow us to provide best-in-class solutions
+        for every client.
+      </p>
+      <ul class="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        {
+          partners.map((partner) => (
+            <li class="flex flex-col items-center gap-3 rounded-lg border border-brand-surface bg-brand-light p-4">
+              {/* Placeholder: hotlinked live-site logo; optimized local assets are Phase 6/10 */}
+              <img
+                src={partner.data.logo}
+                alt={`${partner.data.name} logo`}
+                width="120"
+                height="120"
+                loading="lazy"
+                class="h-20 w-auto object-contain"
+              />
+              {partner.data.url ? (
+                <a
+                  href={partner.data.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-center text-small no-underline hover:underline"
+                >
+                  {partner.data.name}
+                </a>
+              ) : (
+                <span class="text-center text-small">{partner.data.name}</span>
+              )}
+              {partner.data.description && (
+                <p class="text-center text-small">{partner.data.description}</p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </Section>
+</PageLayout>
