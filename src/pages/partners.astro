@@ -21,10 +21,10 @@ const partners = (await getCollection("partners")).sort((a, b) =>
         Our strategic partnerships allow us to provide best-in-class solutions
         for every client.
       </p>
-      <ul class="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+      <ul class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {
           partners.map((partner) => (
-            <li class="flex flex-col items-center gap-3 rounded-lg border border-brand-surface bg-brand-light p-4">
+            <li class="client-tile flex flex-col items-center justify-center gap-3 rounded-xl border border-brand-surface bg-brand-light p-7 shadow-sm">
               {/* PERF: raw <img>, revisit in Phase 10 — remote hotlinked
                   WordPress placeholder; cannot route through astro:assets until
                   the logo files are downloaded/finalized (deferred asset work). */}
@@ -34,7 +34,7 @@ const partners = (await getCollection("partners")).sort((a, b) =>
                 width="120"
                 height="120"
                 loading="lazy"
-                class="h-20 w-auto object-contain"
+                class="h-16 w-auto object-contain"
               />
               {partner.data.url ? (
                 <a

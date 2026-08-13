@@ -3,20 +3,29 @@ import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
+import ClientWall from "../components/ClientWall";
 
 // Only verified entries render on the live page. The 52 filename-only entries
 // (verified: false, MIGRATION FLAG backlog) are intentionally excluded until
 // identified — see roadmap Phase 10.
 const clients = (await getCollection("clients"))
   .filter((c) => c.data.verified)
-  .sort((a, b) => a.data.name.localeCompare(b.data.name));
+  .map((c) => ({
+    name: c.data.name,
+    logo: c.data.logo,
+    industry: c.data.industry ?? "Others",
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 
-const byIndustry = new Map<string, typeof clients>();
-for (const client of clients) {
-  const key = client.data.industry ?? "Others";
-  if (!byIndustry.has(key)) byIndustry.set(key, []);
-  byIndustry.get(key)!.push(client);
-}
+// Stable industry order: by descending count, "Others" last.
+const counts = new Map<string, number>();
+for (const c of clients)
+  counts.set(c.industry, (counts.get(c.industry) ?? 0) + 1);
+const industries = [...counts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .map(([name]) => name)
+  .filter((name) => name !== "Others")
+  .concat(counts.has("Others") ? ["Others"] : []);
 ---
 
 <PageLayout
@@ -31,39 +40,12 @@ for (const client of clients) {
         attention, to ensure that the service we provide always meets their
         requirements.
       </p>
-      {
-        [...byIndustry.entries()].map(([industry, entries], gi) => (
-          <div class="mt-16">
-            <div class="flex items-baseline gap-4">
-              <span class="index-numeral" aria-hidden="true">
-                {String(gi + 1).padStart(2, "0")}
-              </span>
-              <h2 class="headline-xl">{industry}</h2>
-              <span class="ml-auto hidden text-small text-brand-text/70 sm:block">
-                {entries.length} client{entries.length === 1 ? "" : "s"}
-              </span>
-            </div>
-            <ul class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-brand-surface bg-brand-surface sm:grid-cols-3 lg:grid-cols-4">
-              {entries.map((client) => (
-                <li class="flex flex-col items-center justify-center gap-3 bg-brand-light p-6 transition-colors duration-200 hover:bg-brand-mist">
-                  {/* PERF: raw <img>, revisit in Phase 10 — remote hotlinked
-                      WordPress placeholder; cannot route through astro:assets until
-                      the logo files are downloaded/finalized (deferred asset work). */}
-                  <img
-                    src={client.data.logo}
-                    alt={`${client.data.name} logo`}
-                    width="120"
-                    height="120"
-                    loading="lazy"
-                    class="h-16 w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0"
-                  />
-                  <span class="text-center text-small">{client.data.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+
+      <!-- Filterable logo wall (Preact island, client:visible). SSRs the full
+           wall so the page is complete without JS; tabs filter client-side. -->
+      <div class="mt-10">
+        <ClientWall client:visible clients={clients} industries={industries} />
+      </div>
     </Container>
   </Section>
 </PageLayout>

@@ -195,4 +195,27 @@
     color: transparent;
     -webkit-text-stroke: 1.5px var(--color-brand-primary);
   }
+
+  /* Logo-wall tiles (Clients/Partners): soft card, hover lift + brand glow.
+     Full-color logos — no grayscale treatment. Reduced-motion safe. */
+  .client-tile {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+  .client-tile:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 10px 24px -10px
+      color-mix(in srgb, var(--color-brand-primary) 25%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .client-tile {
+      transition: none;
+    }
+    .client-tile:hover {
+      transform: none;
+    }
+  }
 }
