@@ -8,9 +8,35 @@ const { class: className = "" } = Astro.props;
 
 <div
   class:list={[
-    "rounded-lg border border-brand-surface bg-brand-light p-6 shadow-sm transition-shadow duration-200 hover:shadow-md",
+    "card rounded-lg border border-brand-surface bg-brand-light p-6 shadow-sm",
     className,
   ]}
 >
   <slot />
 </div>
+
+<style>
+  /* CSS-only interaction polish: subtle lift + brand-tinted border glow. */
+  .card {
+    transition:
+      transform 200ms ease,
+      box-shadow 200ms ease,
+      border-color 200ms ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-brand-primary);
+    box-shadow:
+      0 8px 20px -6px
+        color-mix(in srgb, var(--color-brand-primary) 22%, transparent),
+      0 2px 6px -2px rgb(0 0 0 / 0.06);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+    .card:hover {
+      transform: none;
+    }
+  }
+</style>

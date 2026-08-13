@@ -179,3 +179,20 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 - [x] Build abstract background components driven by brand tokens (no external images): `GradientMesh.astro`, `DotGrid.astro`, `DiagonalLines.astro`; applied to Home hero (mesh+dots), Solutions hub hero (mesh+lines), Helix hub hero (mesh+dots) via a `heroBackground` prop on PageLayout.
 - [x] Build `PhotoPending.astro` (brand-token panel + Lucide image icon + caption) and place it where real photography will eventually go: About Us office/team band + 6 leadership portraits, and the 3 case-study hero slots. No stock photography sourced.
 - [x] Verify: `astro check` 0 errors, `pnpm build` 32 pages OK, local Lighthouse homepage 99/100/100/100 (perf/a11y/bp/seo) — above the Phase 6 threshold of 95.
+
+---
+
+## Visual Richness (ad hoc)
+
+**Status: Complete**
+
+> Illustration + motion pass. All visuals are inline SVG/CSS in brand tokens — no stock
+> photography, no external image hotlinks, no new hosted image files. All motion respects
+> `prefers-reduced-motion`; scroll animation uses IntersectionObserver (no scroll listeners).
+
+- [x] Build 3 abstract enterprise-IT SVG illustrations as reusable components in `src/components/illustrations/` (`NetworkMesh.astro` — connected nodes mesh; `ServerRack.astro` — rack with status lights + uplinks; `DataPipeline.astro` — cloud-to-cloud pipeline with packets), all styled via brand-token CSS variables.
+- [x] Homepage hero: layered GradientMesh + DotGrid + NetworkMesh as hero-side visual; Vision section paired with DataPipeline; What We Do paired with ServerRack. Real copy from content-audit (no invented copy); Vision/What We Do sections already existed and were restructured into two-column illustration layouts.
+- [x] Scroll-reveal entrance animation (fade + translateY 16px, 400ms ease-out) site-wide on all `Section` components (hero sections opted out via `reveal={false}`). NOTE: initially implemented with Motion One, but its bundle added ~63KB JS — **replaced with the Web Animations API** (`element.animate`, zero dependencies) to protect the performance budget. Triggered via IntersectionObserver, animates once, disabled under prefers-reduced-motion, content fully visible without JS.
+- [x] Animated stat counter (`src/components/StatCounter.tsx`, Preact island, `client:visible`, IntersectionObserver, counts up once) on homepage. Real numbers only: 18+ years (founded 2008, about-us audit), 64+ verified clients (clients collection), 99% customer satisfaction (ST-Services copy), 3 office locations (contact audit). No invented figures.
+- [x] Card hover polish in `Card.astro`: CSS-only lift (-4px) + brand-primary border glow; disabled under prefers-reduced-motion.
+- [x] Verify: `astro check` 0 errors; `pnpm build` 32 pages OK; Lighthouse homepage 99/100/100/100 (solutions hub 99/100/100/100, about-us 99/100/100/100, product page 99/100/100/100). One a11y regression caught & fixed (PhotoPending caption opacity → full-strength text). Bundle: JS 25,860 B → 27,329 B (+1.5KB: StatCounter island + reveal script), CSS 61,928 B → 61,818 B, dist total 1.69MB → 1.72MB. No new runtime dependencies (motion was installed then removed in favor of WAAPI).

@@ -55,7 +55,11 @@ const breadcrumbs = [
     <JsonLdBreadcrumb items={breadcrumbs} />
     <slot name="head" />
   </Fragment>
-  <Section variant="dark" class="relative overflow-hidden py-20 md:py-28">
+  <Section
+    variant="dark"
+    class="relative overflow-hidden py-20 md:py-28"
+    reveal={false}
+  >
     {
       heroBackground !== "flat" && (
         <>

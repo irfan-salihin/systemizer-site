@@ -3,9 +3,15 @@ export interface Props {
   /** Visual background variant of the section band. */
   variant?: "light" | "surface" | "dark";
   class?: string;
+  /**
+   * Scroll-reveal entrance animation (fade + translate-Y, 400ms) via the
+   * site-wide IntersectionObserver script. Default true; hero/top sections
+   * that are immediately in view should pass reveal={false}.
+   */
+  reveal?: boolean;
 }
 
-const { variant = "light", class: className = "" } = Astro.props;
+const { variant = "light", class: className = "", reveal = true } = Astro.props;
 
 const variants: Record<string, string> = {
   light: "bg-brand-light text-brand-text",
@@ -14,6 +20,9 @@ const variants: Record<string, string> = {
 };
 ---
 
-<section class:list={["py-16 md:py-24", variants[variant], className]}>
+<section
+  class:list={["py-16 md:py-24", variants[variant], className]}
+  data-reveal={reveal ? "" : undefined}
+>
   <slot />
 </section>

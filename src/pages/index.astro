@@ -4,6 +4,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import JsonLdOrganization from "../components/JsonLdOrganization.astro";
 import GradientMesh from "../components/GradientMesh.astro";
 import DotGrid from "../components/DotGrid.astro";
+import NetworkMesh from "../components/illustrations/NetworkMesh.astro";
+import ServerRack from "../components/illustrations/ServerRack.astro";
+import DataPipeline from "../components/illustrations/DataPipeline.astro";
+import StatCounter from "../components/StatCounter";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Card from "../components/Card.astro";
@@ -19,80 +23,126 @@ const truncate = (s: string, n: number) =>
   description="Leading-edge IT technology services custom-tailored for your business. Systemizer Technic specializes in helping companies modernise technology, reimagine processes and transform experiences."
 >
   <JsonLdOrganization slot="head" type="Organization" />
-  <!-- Hero -->
-  <Section variant="dark" class="relative overflow-hidden py-24 md:py-32">
+  <!-- Hero: layered abstract background + network-mesh illustration -->
+  <Section
+    variant="dark"
+    class="relative overflow-hidden py-24 md:py-32"
+    reveal={false}
+  >
     <GradientMesh />
     <DotGrid />
-    <Container class="relative max-w-4xl">
-      <h1 class="text-display">
-        Leading-edge IT technology services
-        <span class="text-brand-primary">custom-tailored</span> for your business
-      </h1>
-      <p class="mt-6 max-w-2xl">
-        Systemizer Technic specializes in helping companies modernise
-        technology, reimagine processes and transform experiences, so they stay
-        ahead of the curve in the fast-changing world. We're on a mission to
-        modernise and drive innovation with technology.
-      </p>
-      <p class="mt-4 max-w-2xl">
-        We help unleash the power of your digital transformation in a way that
-        streamlines your operations, supercharges your growth, and puts your
-        business at the forefront of leading-edge technology.
-      </p>
-      <div class="mt-8">
-        <Button href="/contact/">Contact Us</Button>
+    <Container class="relative">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <h1 class="text-display">
+            Leading-edge IT technology services
+            <span class="text-brand-primary">custom-tailored</span> for your business
+          </h1>
+          <p class="mt-6 max-w-2xl">
+            Systemizer Technic specializes in helping companies modernise
+            technology, reimagine processes and transform experiences, so they
+            stay ahead of the curve in the fast-changing world. We're on a
+            mission to modernise and drive innovation with technology.
+          </p>
+          <p class="mt-4 max-w-2xl">
+            We help unleash the power of your digital transformation in a way
+            that streamlines your operations, supercharges your growth, and puts
+            your business at the forefront of leading-edge technology.
+          </p>
+          <div class="mt-8">
+            <Button href="/contact/">Contact Us</Button>
+          </div>
+        </div>
+        <NetworkMesh class="hidden w-full max-w-md justify-self-end lg:block" />
       </div>
+    </Container>
+  </Section>
+
+  <!-- Stats: real figures — founded 2008 (content-audit/about-us.md),
+       verified clients from the clients collection, 99% CSAT (st-services copy),
+       3 offices (content-audit/contact-us.md) -->
+  <Section variant="light" class="py-12">
+    <Container>
+      <StatCounter
+        client:visible
+        stats={[
+          {
+            value: new Date().getFullYear() - 2008,
+            suffix: "+",
+            label: "Years in business",
+          },
+          { value: 64, suffix: "+", label: "Verified clients" },
+          { value: 99, suffix: "%", label: "Customer satisfaction" },
+          { value: 3, suffix: "", label: "Office locations" },
+        ]}
+      />
     </Container>
   </Section>
 
   <!-- Vision -->
   <Section variant="light">
-    <Container class="max-w-3xl">
-      <h2 class="text-h2">Our Vision</h2>
-      <p class="mt-4">
-        We reshape digital transformation in a way that enriches our clients'
-        businesses.
-      </p>
-      <p class="mt-4">
-        We are focused on helping brands grow through digital transformation
-        services. We bring real solutions to each client's problems through a
-        deep understanding of their market, solution, and vision.
-      </p>
+    <Container>
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="text-h2">Our Vision</h2>
+          <p class="mt-4">
+            We reshape digital transformation in a way that enriches our
+            clients' businesses.
+          </p>
+          <p class="mt-4">
+            We are focused on helping brands grow through digital transformation
+            services. We bring real solutions to each client's problems through
+            a deep understanding of their market, solution, and vision.
+          </p>
+        </div>
+        <DataPipeline
+          class="hidden w-full max-w-md justify-self-center lg:block"
+        />
+      </div>
     </Container>
   </Section>
 
   <!-- What We Do -->
   <Section variant="surface">
-    <Container class="max-w-3xl">
-      <h2 class="text-h2">What We Do</h2>
-      <p class="mt-4">
-        As an innovative solution provider, we provide a range of services
-        designed to take the heavy lifting off your hands.
-      </p>
-      <p class="mt-4">
-        We are Systemizer Technic. We engineer modern innovative IT solutions
-        for businesses of every size. We focus on experience and results, with
-        an emphasis on creating value. We provide our clients with high levels
-        of operational excellence through flexible scaling. Our processes
-        include leveraging specialized skill sets to help your business curate a
-        cohesive partner ecosystem for growth opportunities.
-      </p>
-      <p class="mt-4">
-        We take pride in maintaining an open dialogue with every customer to
-        ensure we understand their needs. Your company goals and growth drive
-        everything from design solutions up to final execution plan
-        implementation, and we work tirelessly to ensure that they seamlessly
-        complement each other to create true long-term value.
-      </p>
-      <p class="mt-4">
-        We work closely with your team to understand your digital transformation
-        needs. This leads us to design and develop a comprehensive,
-        custom-tailored IT Technology services plan aligned with your digital
-        priorities.
-      </p>
-      <div class="mt-6">
-        <Button href="/solutions/" variant="secondary">See All Solutions</Button
-        >
+    <Container>
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <ServerRack
+          class="order-last hidden w-full max-w-md justify-self-center lg:order-first lg:block"
+        />
+        <div>
+          <h2 class="text-h2">What We Do</h2>
+          <p class="mt-4">
+            As an innovative solution provider, we provide a range of services
+            designed to take the heavy lifting off your hands.
+          </p>
+          <p class="mt-4">
+            We are Systemizer Technic. We engineer modern innovative IT
+            solutions for businesses of every size. We focus on experience and
+            results, with an emphasis on creating value. We provide our clients
+            with high levels of operational excellence through flexible scaling.
+            Our processes include leveraging specialized skill sets to help your
+            business curate a cohesive partner ecosystem for growth
+            opportunities.
+          </p>
+          <p class="mt-4">
+            We take pride in maintaining an open dialogue with every customer to
+            ensure we understand their needs. Your company goals and growth
+            drive everything from design solutions up to final execution plan
+            implementation, and we work tirelessly to ensure that they
+            seamlessly complement each other to create true long-term value.
+          </p>
+          <p class="mt-4">
+            We work closely with your team to understand your digital
+            transformation needs. This leads us to design and develop a
+            comprehensive, custom-tailored IT Technology services plan aligned
+            with your digital priorities.
+          </p>
+          <div class="mt-6">
+            <Button href="/solutions/" variant="secondary"
+              >See All Solutions</Button
+            >
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
