@@ -18,7 +18,7 @@ export default function MobileMenu({ items }: Props) {
     setExpanded((current) => (current === label ? null : label));
 
   return (
-    <div class="md:hidden">
+    <div class="lg:hidden">
       <button
         type="button"
         aria-expanded={open}

@@ -22,7 +22,14 @@
   --font-heading: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --font-body: Roboto, Arial, Helvetica, sans-serif;
 
+  /* Extended brand tints/shades derived from the placeholder palette */
+  --color-brand-ink: #0b1b33; /* deeper than brand-dark — hero depth */
+  --color-brand-mist: #e7eef9; /* between surface and light */
+
   /* Type scale (from live Elementor kit, desktop values) */
+  --text-mega: clamp(3rem, 6.5vw, 5.25rem); /* 48–84px hero display */
+  --text-mega--line-height: 1.06;
+  --text-mega--font-weight: 300;
   --text-display: 3.75rem; /* 60px */
   --text-display--line-height: 4.375rem; /* 70px */
   --text-display--font-weight: 300;
@@ -123,5 +130,69 @@
   .prose-like a {
     text-decoration: underline;
     text-underline-offset: 2px;
+  }
+}
+
+/* ---- Design-refresh typographic system ------------------------------------ */
+@layer components {
+  /* Kicker / eyebrow above section headings: tracked-out small caps with a
+     short accent rule before it. */
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-brand-primary-dark);
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 2.25rem;
+    height: 2px;
+    background: var(--color-brand-primary);
+  }
+  /* On dark sections the kicker needs a lighter treatment for contrast */
+  .on-dark .kicker,
+  .kicker--on-dark {
+    color: var(--color-brand-light);
+  }
+  .on-dark .kicker::before,
+  .kicker--on-dark::before {
+    background: var(--color-brand-accent);
+  }
+
+  /* Confident section headline: big, light, tight-tracked, with an optional
+     accent word rendered in brand-primary italic-serif-free emphasis. */
+  .headline-xl {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    line-height: 1.08;
+    font-weight: 300;
+    letter-spacing: -0.015em;
+    color: var(--color-brand-secondary);
+  }
+  .on-dark .headline-xl,
+  .headline-xl--on-dark {
+    color: var(--color-brand-light);
+  }
+  .headline-accent {
+    color: var(--color-brand-primary);
+  }
+  .on-dark .headline-accent,
+  .headline-accent--on-dark {
+    color: var(--color-brand-accent);
+  }
+
+  /* Oversized ghost numeral used for editorial index markers (01 / 02 / …) */
+  .index-numeral {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-brand-primary);
   }
 }
