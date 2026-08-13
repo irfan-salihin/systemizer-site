@@ -32,12 +32,20 @@ for (const client of clients) {
         requirements.
       </p>
       {
-        [...byIndustry.entries()].map(([industry, entries]) => (
-          <div class="mt-12">
-            <h2 class="text-h3">{industry}</h2>
-            <ul class="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
+        [...byIndustry.entries()].map(([industry, entries], gi) => (
+          <div class="mt-16">
+            <div class="flex items-baseline gap-4">
+              <span class="index-numeral" aria-hidden="true">
+                {String(gi + 1).padStart(2, "0")}
+              </span>
+              <h2 class="headline-xl">{industry}</h2>
+              <span class="ml-auto hidden text-small text-brand-text/70 sm:block">
+                {entries.length} client{entries.length === 1 ? "" : "s"}
+              </span>
+            </div>
+            <ul class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-brand-surface bg-brand-surface sm:grid-cols-3 lg:grid-cols-4">
               {entries.map((client) => (
-                <li class="flex flex-col items-center gap-3 rounded-lg border border-brand-surface bg-brand-light p-4">
+                <li class="flex flex-col items-center justify-center gap-3 bg-brand-light p-6 transition-colors duration-200 hover:bg-brand-mist">
                   {/* PERF: raw <img>, revisit in Phase 10 — remote hotlinked
                       WordPress placeholder; cannot route through astro:assets until
                       the logo files are downloaded/finalized (deferred asset work). */}
@@ -47,7 +55,7 @@ for (const client of clients) {
                     width="120"
                     height="120"
                     loading="lazy"
-                    class="h-20 w-auto object-contain"
+                    class="h-16 w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0"
                   />
                   <span class="text-center text-small">{client.data.name}</span>
                 </li>
