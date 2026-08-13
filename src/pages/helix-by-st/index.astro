@@ -48,21 +48,27 @@ const subtitles: Record<string, string> = {
 
   <Section variant="surface">
     <Container>
-      <div class="grid gap-6 md:grid-cols-2">
+      <ol class="grid gap-6 md:grid-cols-2">
         {
-          products.map((product) => (
-            <Card>
-              <div class="text-brand-primary">
-                <CollectionIcon name={product.data.icon} class="h-9 w-9" />
+          products.map((product, i) => (
+            <li class="group relative overflow-hidden rounded-lg border border-brand-surface bg-brand-light p-8 transition-all duration-200 hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl">
+              <span
+                class="index-numeral absolute -right-2 -top-4 opacity-60 transition-opacity group-hover:opacity-100"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-dark text-brand-light">
+                <CollectionIcon name={product.data.icon} class="h-6 w-6" />
               </div>
-              <h3 class="mt-4 text-h4">{product.data.title}</h3>
+              <h3 class="mt-5 text-h3">{product.data.title}</h3>
               {subtitles[product.id] && (
-                <p class="mt-1 text-small font-medium text-brand-primary">
+                <p class="mt-1 text-small font-medium uppercase tracking-wider text-brand-primary-dark">
                   {subtitles[product.id]}
                 </p>
               )}
               <p class="mt-3">{product.data.description}</p>
-              <p class="mt-4">
+              <p class="mt-5">
                 <Button
                   href={`/helix-by-st/${product.id}/`}
                   variant="ghost"
@@ -71,32 +77,35 @@ const subtitles: Record<string, string> = {
                   Learn More &gt;
                 </Button>
               </p>
-            </Card>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </Container>
   </Section>
 
-  <Section variant="dark">
-    <Container class="max-w-3xl text-center">
-      <h2 class="text-h2">Helix is the DNA of a self-optimizing enterprise.</h2>
-      <p class="mt-4">
-        It weaves together every part, turning complexity into clarity and
-        fragmentation into unity.
-      </p>
-      <p class="mt-4">
-        It empowers teams to anticipate, act and innovate with confidence.
-      </p>
-      <p class="mt-4">
-        The future of infrastructure is not just automated, it is adaptive,
-        orchestrated, and alive.
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <Button href="/contact/">Request a Demo Today</Button>
-        <Button href="/contact/" variant="ghost" class="text-brand-light">
-          Contact Us
-        </Button>
+  <Section variant="ink">
+    <Container>
+      <div class="grid items-center gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          <h2 class="headline-xl">
+            Helix is the DNA of a
+            <span class="headline-accent--on-dark">self-optimizing</span>
+            enterprise.
+          </h2>
+          <p class="mt-6 max-w-2xl text-brand-light/75">
+            It weaves together every part, turning complexity into clarity and
+            fragmentation into unity. It empowers teams to anticipate, act and
+            innovate with confidence. The future of infrastructure is not just
+            automated, it is adaptive, orchestrated, and alive.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4 lg:col-span-4">
+          <Button href="/contact/">Request a Demo Today</Button>
+          <Button href="/contact/" variant="ghost" class="text-brand-light">
+            Contact Us
+          </Button>
+        </div>
       </div>
     </Container>
   </Section>
