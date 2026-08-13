@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
 import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
-import Card from "../../components/Card.astro";
 import Button from "../../components/Button.astro";
 import CollectionIcon from "../../components/CollectionIcon.astro";
 
@@ -60,7 +59,7 @@ const solutions = (await getCollection("solutions")).sort(
               <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-surface text-brand-primary">
                 <CollectionIcon name={solution.data.icon} class="h-6 w-6" />
               </div>
-              <h3 class="mt-5 text-h3">{solution.data.title}</h3>
+              <h2 class="mt-5 text-h3">{solution.data.title}</h2>
               <p class="mt-1 text-small font-medium uppercase tracking-wider text-brand-primary-dark">
                 {solution.data.tagline}
               </p>

@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
 import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
-import Card from "../../components/Card.astro";
 import Button from "../../components/Button.astro";
 import CollectionIcon from "../../components/CollectionIcon.astro";
 
@@ -61,7 +60,7 @@ const subtitles: Record<string, string> = {
               <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-dark text-brand-light">
                 <CollectionIcon name={product.data.icon} class="h-6 w-6" />
               </div>
-              <h3 class="mt-5 text-h3">{product.data.title}</h3>
+              <h2 class="mt-5 text-h3">{product.data.title}</h2>
               {subtitles[product.id] && (
                 <p class="mt-1 text-small font-medium uppercase tracking-wider text-brand-primary-dark">
                   {subtitles[product.id]}
