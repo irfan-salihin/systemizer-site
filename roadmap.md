@@ -215,7 +215,8 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 - [x] Solutions hub: numbered cards with icon chips + tagline subheads; categories as hairline-joined panels
 - [x] Helix hub: same numbered treatment with dark icon chips; ink CTA band with split layout
 - [x] Success Stories: full-width dark featured lead card + numbered grid
-- [x] Clients: industry groups with ghost numerals + headline-xl + counts; hairline-grid logo cells with grayscale→color hover
+- [x] Clients: industry groups with ghost numerals + headline-xl + counts; hairline-grid logo cells with grayscale→color hover — **REVISED below**
+- [x] Clients/Partners revision (post-feedback): industry bands replaced by `ClientWall.tsx` Preact island (`client:visible`) with pill-tab sector filter (All + 9 industries + counts); wall SSRs fully so no-JS users see all logos. Logos full color (grayscale treatment removed per Irfan's feedback); hover is subtle lift + scale(1.02) + brand glow, reduced-motion safe. Partners page redesigned to the same rounded-tile treatment (simpler — no tabs for 11 entries). Both pages remain fully collection-driven; `verified: true` filter kept (64 shown, 52 hidden). Lighthouse: Clients 100/100/100/100, Partners 99/100/100/100. Bundle: JS +1.4KB (island), CSS ~flat.
 - [x] PageLayout hero: ink band, kicker eyebrow, icon chip, display-size title
 
 **Verification (this branch):**
