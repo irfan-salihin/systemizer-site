@@ -1,7 +1,9 @@
 ---
 /**
- * Abstract enterprise-IT illustration: a server rack with status lights and
- * data bars. Inline SVG, brand-token colors only, decorative (aria-hidden).
+ * Abstract illustration for the What We Do section: an isometric stack of
+ * modular platform layers (infrastructure as composable building blocks),
+ * with status dots and a data bus running through the layers.
+ * Inline SVG, brand-token colors, decorative.
  */
 export interface Props {
   class?: string;
@@ -9,7 +11,12 @@ export interface Props {
 
 const { class: className = "" } = Astro.props;
 
-const units = [0, 1, 2, 3, 4];
+// isometric layer helper: top rhombus + left/right faces
+const layers = [
+  { y: 250, tone: "var(--color-brand-secondary)", label: "infra" },
+  { y: 205, tone: "var(--color-brand-primary)", label: "platform" },
+  { y: 160, tone: "var(--color-brand-accent)", label: "services" },
+];
 ---
 
 <svg
@@ -20,75 +27,125 @@ const units = [0, 1, 2, 3, 4];
   aria-hidden="true"
   role="presentation"
 >
-  <!-- rack frame -->
-  <rect
-    x="150"
-    y="40"
-    width="180"
-    height="300"
-    rx="10"
-    stroke="var(--color-brand-primary)"
-    stroke-width="2"
-    fill="var(--color-brand-secondary)"
-    fill-opacity="0.35"></rect>
+  <defs>
+    <linearGradient id="stack-side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--color-brand-dark)" stop-opacity="0.25"
+      ></stop>
+      <stop
+        offset="100%"
+        stop-color="var(--color-brand-dark)"
+        stop-opacity="0.55"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse
+    cx="240"
+    cy="320"
+    rx="170"
+    ry="26"
+    fill="var(--color-brand-primary)"
+    fill-opacity="0.08"></ellipse>
+
   {
-    units.map((i) => (
+    layers.map((layer) => (
       <g>
-        <rect
-          x="168"
-          y={62 + i * 56}
-          width="144"
-          height="40"
-          rx="5"
-          fill="var(--color-brand-surface)"
-          fill-opacity="0.12"
-          stroke="var(--color-brand-primary)"
-          stroke-opacity="0.5"
+        {/* left face */}
+        <path
+          d={`M120 ${layer.y} L240 ${layer.y + 52} L240 ${layer.y + 84} L120 ${layer.y + 32} Z`}
+          fill={layer.tone}
+          fill-opacity="0.55"
         />
-        <rect
-          x="180"
-          y={76 + i * 56}
-          width={54 + (i % 3) * 22}
-          height="6"
-          rx="3"
-          fill="var(--color-brand-primary)"
-          fill-opacity="0.75"
+        {/* right face */}
+        <path
+          d={`M360 ${layer.y} L240 ${layer.y + 52} L240 ${layer.y + 84} L360 ${layer.y + 32} Z`}
+          fill="url(#stack-side)"
         />
-        <rect
-          x="180"
-          y={88 + i * 56}
-          width={34 + ((i + 1) % 3) * 16}
-          height="4"
-          rx="2"
-          fill="var(--color-brand-accent)"
-          fill-opacity="0.5"
+        {/* top face */}
+        <path
+          d={`M240 ${layer.y - 32} L360 ${layer.y} L240 ${layer.y + 52} L120 ${layer.y} Z`}
+          fill={layer.tone}
+          fill-opacity="0.9"
+          stroke="var(--color-brand-light)"
+          stroke-opacity="0.35"
+          stroke-width="1.5"
         />
-        <circle
-          cx="296"
-          cy={82 + i * 56}
-          r="4"
-          fill={
-            i % 2 === 0
-              ? "var(--color-brand-primary)"
-              : "var(--color-brand-warning)"
-          }
+        {/* tile detail on the top face */}
+        <path
+          d={`M240 ${layer.y - 6} L300 ${layer.y + 13} L240 ${layer.y + 32} L180 ${layer.y + 13} Z`}
+          fill="var(--color-brand-light)"
+          fill-opacity="0.18"
         />
       </g>
     ))
   }
-  <!-- uplink lines leaving the rack -->
-  <path
-    d="M330 120 C 390 120, 400 90, 440 90"
+
+  <!-- vertical data bus piercing the layers -->
+  <line
+    x1="240"
+    y1="96"
+    x2="240"
+    y2="240"
+    stroke="var(--color-brand-light)"
+    stroke-opacity="0.7"
+    stroke-width="2"
+    stroke-dasharray="6 8"
+    class="stack-bus"></line>
+  <circle
+    cx="240"
+    cy="90"
+    r="9"
+    fill="var(--color-brand-primary)"
+    stroke="var(--color-brand-light)"
+    stroke-width="2"></circle>
+  <circle
+    cx="240"
+    cy="90"
+    r="18"
     stroke="var(--color-brand-primary)"
-    stroke-opacity="0.4"
+    stroke-opacity="0.5"
     stroke-width="1.5"
-    stroke-dasharray="5 6"></path>
-  <path
-    d="M330 260 C 390 260, 400 290, 440 290"
-    stroke="var(--color-brand-primary)"
-    stroke-opacity="0.4"
-    stroke-width="1.5"
-    stroke-dasharray="5 6"></path>
-  <circle cx="444" cy="90" r="5" fill="var(--color-brand-primary)"></circle>
-  <circle cx="444" cy="290" r="5" fill="var(--color-brand-primary)"></circle>
+    class="stack-pulse"
+    fill="none"></circle>
+
+  <!-- floating status dots -->
+  <circle cx="150" cy="120" r="5" fill="var(--color-brand-accent)"></circle>
+  <circle cx="335" cy="105" r="4" fill="var(--color-brand-primary)"></circle>
+  <circle
+    cx="365"
+    cy="140"
+    r="5"
+    fill="var(--color-brand-warning)"
+    fill-opacity="0.9"></circle>
 </svg>
+
+<style>
+  .stack-bus {
+    animation: stack-flow 2.4s linear infinite;
+  }
+  .stack-pulse {
+    transform-origin: 240px 90px;
+    animation: stack-ping 2.4s ease-out infinite;
+  }
+  @keyframes stack-flow {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+  @keyframes stack-ping {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stack-bus,
+    .stack-pulse {
+      animation: none;
+    }
+  }
+</style>
