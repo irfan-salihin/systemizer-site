@@ -199,14 +199,13 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ---
 
-## Design Refresh (branch: design-refresh)
+## Design Refresh
 
-**Status: Complete (on branch — not merged to main)**
+**Status: Complete** (merged to main; current state of the site)
 
-> Full visual design upgrade pass on the `design-refresh` branch. No copy changes;
-> content collections and schemas untouched. Inline SVG/CSS only — no stock photos,
-> no external image hotlinks, no new hosted binary assets. All motion respects
-> prefers-reduced-motion.
+> Full visual design upgrade pass. No copy changes; content collections and
+> schemas untouched. Inline SVG/CSS only — no stock photos, no external image
+> hotlinks, no new hosted binary assets. All motion respects prefers-reduced-motion.
 
 - [x] Typography system: mega hero scale (`text-mega`, clamp 48–84px), `headline-xl` with accent-word treatment, `kicker` eyebrow (accent rule + tracked small caps), ghost outline `index-numeral`; palette extended with derived `brand-ink` / `brand-mist`
 - [x] Header: brand gradient hairline, taller bar, animated active-link underline, elevated dropdowns with accent borders; nav breakpoint md→lg
