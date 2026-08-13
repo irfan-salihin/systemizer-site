@@ -1,5 +1,6 @@
 ---
 import Container from "./Container.astro";
+import logoWhiteUrl from "../assets/systemizer-logo-white.svg?url";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -38,6 +39,20 @@ const socialLinks = [
 
 <footer class="bg-brand-dark text-brand-light">
   <Container class="py-16">
+    <!-- Real brand logo (white variant on dark footer). Final asset audit in Phase 10. -->
+    <a
+      href="/"
+      aria-label="Systemizer Technic — home"
+      class="mb-10 inline-block"
+    >
+      <img
+        src={logoWhiteUrl}
+        alt="Systemizer Technic"
+        width="140"
+        height="55"
+        class="h-10 w-auto"
+      />
+    </a>
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
       <!-- Newsletter -->
       <div>

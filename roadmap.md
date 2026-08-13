@@ -163,3 +163,19 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 - [ ] Swap in final logo files (all required formats/sizes: favicon, OG image, header logo, footer logo)
 - [ ] Review all Phase 3 content-collection copy against final brand voice/tone guidelines and revise as needed
 - [ ] Re-run Lighthouse CI and visual QA after asset swap to confirm no regressions
+
+---
+
+## Demo Prep (ad hoc)
+
+**Status: Complete**
+
+> Visual polish pass for a demo. This does **not** fulfill Phase 10's real-asset-swap
+> tasks — the logo/icon/photo work here uses the live site's current public assets and
+> placeholders, pending final approved brand assets in Phase 10.
+
+- [x] Fetch real Systemizer Technic logo (blue SVG for header, white variant for dark footer) into `src/assets/` and wire into `Header.astro`/`Footer.astro` (white variant recolored from the official blue logo SVG; matches live site's placement)
+- [x] Add Lucide icons via **lucide-astro** (chose it over `@astrojs/lucide` — that package is unmaintained at v1.x with no Astro 5 support — and over `astro-icon`, which pulls a runtime icon resolver unnecessary for a fixed set of 8 icons). Mapped via `src/components/CollectionIcon.astro` using the existing `icon` schema field: server→ST-Infra, workflow→ST-Automation, cloud→ST-Cloud, headphones→ST-Services, eye→ST Overwatch, scan-search→ST TrueState, boxes→STackNode, bot→STackBot. Rendered on hub cards and detail-page heroes.
+- [x] Build abstract background components driven by brand tokens (no external images): `GradientMesh.astro`, `DotGrid.astro`, `DiagonalLines.astro`; applied to Home hero (mesh+dots), Solutions hub hero (mesh+lines), Helix hub hero (mesh+dots) via a `heroBackground` prop on PageLayout.
+- [x] Build `PhotoPending.astro` (brand-token panel + Lucide image icon + caption) and place it where real photography will eventually go: About Us office/team band + 6 leadership portraits, and the 3 case-study hero slots. No stock photography sourced.
+- [x] Verify: `astro check` 0 errors, `pnpm build` 32 pages OK, local Lighthouse homepage 99/100/100/100 (perf/a11y/bp/seo) — above the Phase 6 threshold of 95.

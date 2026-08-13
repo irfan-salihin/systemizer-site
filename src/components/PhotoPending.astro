@@ -1,0 +1,34 @@
+---
+import Image from "lucide-astro/Image";
+
+/**
+ * Placeholder panel for a spot that will eventually hold real photography
+ * (team/office photos, case-study hero images). Brand-token styled; no stock
+ * photography is sourced or embedded. Replaced with real assets in Phase 10.
+ */
+export interface Props {
+  caption?: string;
+  /** Tailwind aspect class, e.g. "aspect-video" (default) or "aspect-square". */
+  aspect?: string;
+  class?: string;
+}
+
+const {
+  caption = "Professional photography — pending",
+  aspect = "aspect-video",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col items-center justify-center gap-3 rounded-lg border border-brand-surface bg-brand-surface/60 text-brand-text/70",
+    aspect,
+    className,
+  ]}
+  role="img"
+  aria-label={caption}
+>
+  <Image class="h-10 w-10 text-brand-primary/60" aria-hidden="true" />
+  <p class="text-small italic">{caption}</p>
+</div>

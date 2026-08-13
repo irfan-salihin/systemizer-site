@@ -2,6 +2,7 @@
 import Container from "./Container.astro";
 import MobileMenu from "./MobileMenu";
 import { NAV_ITEMS } from "../data/nav";
+import logoUrl from "../assets/systemizer-logo.svg?url";
 
 export interface Props {
   /** Current page path, used to mark the active nav item. */
@@ -21,36 +22,17 @@ const isActive = (href: string) =>
     <div class="relative flex h-16 items-center justify-between gap-8">
       <a
         href="/"
-        class="flex items-center gap-2 font-heading text-h5 font-normal text-brand-primary no-underline"
+        class="flex items-center no-underline"
         aria-label="Systemizer Technic — home"
       >
-        <!-- PLACEHOLDER logo mark: final logo files swapped in during Phase 10 -->
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 27.6 55.17"
-          class="h-8 w-4"
-          aria-hidden="true"
-        >
-          <g fill="currentColor">
-            <polyline points=".17 39.67 11.05 33.38 13.48 34.82 13.56 47.18"
-            ></polyline>
-            <polyline points=".04 23.75 10.82 30.19 10.75 33.02 0 39.1"
-            ></polyline>
-            <polyline points="27.42 39.74 16.55 33.45 14.11 34.89 14.04 47.25"
-            ></polyline>
-            <polyline points="27.35 23.47 16.48 29.75 14.04 28.31 13.97 15.95"
-            ></polyline>
-            <polyline points=".11 23.4 10.98 29.68 13.41 28.25 13.49 15.88"
-            ></polyline>
-            <polygon points="14.33 15.46 27.41 8.14 27.41 22.96 14.33 15.46"
-            ></polygon>
-            <polygon points="27.23 7.32 14.14 0 14.14 14.82 27.23 7.32"
-            ></polygon>
-            <polygon points="14.51 47.67 27.59 40.35 27.59 55.17 14.51 47.67"
-            ></polygon>
-          </g>
-        </svg>
-        Systemizer Technic
+        <!-- Real brand logo (blue on light header). Final asset audit in Phase 10. -->
+        <img
+          src={logoUrl}
+          alt="Systemizer Technic"
+          width="140"
+          height="55"
+          class="h-9 w-auto"
+        />
       </a>
 
       <!-- Desktop nav: pure static HTML, zero JS shipped -->

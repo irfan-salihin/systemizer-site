@@ -4,6 +4,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import Button from "../../components/Button.astro";
+import PhotoPending from "../../components/PhotoPending.astro";
 
 export async function getStaticPaths() {
   const stories = await getCollection("success-stories");
@@ -24,7 +25,12 @@ const { Content } = await render(entry);
   eyebrow="Success Stories"
 >
   <Section variant="light">
-    <Container class="prose-like max-w-3xl">
+    <Container class="max-w-3xl">
+      <PhotoPending
+        caption={`${entry.data.clientName} — case study hero image pending`}
+      />
+    </Container>
+    <Container class="prose-like mt-10 max-w-3xl">
       <Content />
       {
         entry.data.testimonialQuote && (

@@ -1,0 +1,32 @@
+---
+/**
+ * Abstract decorative background — thin diagonal brand-tinted lines.
+ * Pure CSS, driven by brand tokens; no images.
+ * Position absolute: place inside a `relative` container over a dark base.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "pointer-events-none absolute inset-0 overflow-hidden",
+    className,
+  ]}
+  style={`
+    background-image: repeating-linear-gradient(
+      -55deg,
+      transparent 0px,
+      transparent 34px,
+      color-mix(in srgb, var(--color-brand-primary) 16%, transparent) 34px,
+      color-mix(in srgb, var(--color-brand-primary) 16%, transparent) 35px
+    );
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  `}
+>
+</div>

@@ -1,0 +1,28 @@
+---
+/**
+ * Abstract decorative background — a subtle grid of brand-tinted dots, fading
+ * out toward the bottom. Pure CSS, driven by brand tokens; no images.
+ * Position absolute: place inside a `relative` hero/section container.
+ * Designed to overlay a dark base (pair with GradientMesh or a bg-brand-dark).
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "pointer-events-none absolute inset-0 overflow-hidden",
+    className,
+  ]}
+  style={`
+    background-image: radial-gradient(color-mix(in srgb, var(--color-brand-light) 14%, transparent) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+    -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 95%);
+  `}
+>
+</div>

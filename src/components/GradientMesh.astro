@@ -1,0 +1,36 @@
+---
+/**
+ * Abstract decorative background — soft brand-colored gradient blobs on a deep
+ * brand-dark base. Pure CSS, driven entirely by the brand tokens; no images.
+ * Position absolute: place inside a `relative` hero/section container.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  aria-hidden="true"
+  class:list={[
+    "pointer-events-none absolute inset-0 overflow-hidden bg-brand-dark",
+    className,
+  ]}
+>
+  <div
+    class="absolute -top-1/4 -left-1/4 h-[80%] w-[70%] rounded-full opacity-25 blur-3xl"
+    style="background: radial-gradient(circle, var(--color-brand-primary) 0%, transparent 70%);"
+  >
+  </div>
+  <div
+    class="absolute top-1/3 -right-1/5 h-[90%] w-[60%] rounded-full opacity-20 blur-3xl"
+    style="background: radial-gradient(circle, var(--color-brand-accent) 0%, transparent 70%);"
+  >
+  </div>
+  <div
+    class="absolute -bottom-1/3 left-1/4 h-[70%] w-[50%] rounded-full opacity-15 blur-3xl"
+    style="background: radial-gradient(circle, var(--color-brand-secondary) 0%, transparent 70%);"
+  >
+  </div>
+</div>

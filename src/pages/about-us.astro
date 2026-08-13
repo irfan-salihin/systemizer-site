@@ -4,6 +4,7 @@ import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Card from "../components/Card.astro";
 import Button from "../components/Button.astro";
+import PhotoPending from "../components/PhotoPending.astro";
 
 const values = [
   {
@@ -75,6 +76,11 @@ const leaders = [
         Systemizer Technic has successfully supported its clients nationwide.
       </p>
 
+      <PhotoPending
+        class="mt-8"
+        caption="Office & team photography — pending"
+      />
+
       <h2 class="mt-10 text-h2">The Company</h2>
       <p class="mt-4">
         Incorporated in 2008 as the YTY Group Industries' IT arm saw us managing
@@ -139,7 +145,11 @@ const leaders = [
         {
           leaders.map((person) => (
             <Card>
-              <h3 class="text-h5">{person.name}</h3>
+              <PhotoPending
+                aspect="aspect-square"
+                caption="Portrait — pending"
+              />
+              <h3 class="mt-4 text-h5">{person.name}</h3>
               <p class="mt-1 text-small">{person.role}</p>
               <p class="mt-2 text-small">
                 <a href={`mailto:${person.email}`}>{person.email}</a>

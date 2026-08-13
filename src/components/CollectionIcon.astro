@@ -1,0 +1,39 @@
+---
+import Server from "lucide-astro/Server";
+import Workflow from "lucide-astro/Workflow";
+import Cloud from "lucide-astro/Cloud";
+import Headphones from "lucide-astro/Headphones";
+import Eye from "lucide-astro/Eye";
+import ScanSearch from "lucide-astro/ScanSearch";
+import Boxes from "lucide-astro/Boxes";
+import Bot from "lucide-astro/Bot";
+
+/**
+ * Maps the `icon` field on solutions/products collection entries to a Lucide
+ * icon component (lucide-astro — the actively maintained Lucide port for Astro;
+ * @astrojs/lucide is unmaintained at v1.x, astro-icon would pull a runtime
+ * icon resolver we don't need for a fixed set of 8 icons).
+ */
+const ICONS = {
+  server: Server,
+  workflow: Workflow,
+  cloud: Cloud,
+  headphones: Headphones,
+  eye: Eye,
+  "scan-search": ScanSearch,
+  boxes: Boxes,
+  bot: Bot,
+} as const;
+
+export type IconName = keyof typeof ICONS;
+
+export interface Props {
+  name: string | undefined;
+  class?: string;
+}
+
+const { name, class: className = "h-8 w-8" } = Astro.props;
+const Icon = name && name in ICONS ? ICONS[name as IconName] : undefined;
+---
+
+{Icon && <Icon class={className} aria-hidden="true" />}

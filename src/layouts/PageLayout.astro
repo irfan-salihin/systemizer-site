@@ -3,6 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import JsonLdBreadcrumb from "../components/JsonLdBreadcrumb.astro";
+import CollectionIcon from "../components/CollectionIcon.astro";
+import GradientMesh from "../components/GradientMesh.astro";
+import DotGrid from "../components/DotGrid.astro";
+import DiagonalLines from "../components/DiagonalLines.astro";
 
 export interface Props {
   title: string;
@@ -11,9 +15,22 @@ export interface Props {
   eyebrow?: string;
   tagline?: string;
   ogType?: "website" | "article";
+  /** Lucide icon name (from a collection's `icon` field) shown beside the title. */
+  icon?: string;
+  /** Decorative abstract background for the dark hero band. Default: flat. */
+  heroBackground?:
+    "flat" | "mesh" | "dots" | "lines" | "mesh-dots" | "mesh-lines";
 }
 
-const { title, description = "", eyebrow, tagline, ogType } = Astro.props;
+const {
+  title,
+  description = "",
+  eyebrow,
+  tagline,
+  ogType,
+  icon,
+  heroBackground = "flat",
+} = Astro.props;
 
 // Inner pages render a breadcrumb rooted at Home; the current page is the last item.
 const breadcrumbs = [
@@ -38,8 +55,23 @@ const breadcrumbs = [
     <JsonLdBreadcrumb items={breadcrumbs} />
     <slot name="head" />
   </Fragment>
-  <Section variant="dark" class="py-20 md:py-28">
-    <Container>
+  <Section variant="dark" class="relative overflow-hidden py-20 md:py-28">
+    {
+      heroBackground !== "flat" && (
+        <>
+          {(heroBackground === "mesh" ||
+            heroBackground === "mesh-dots" ||
+            heroBackground === "mesh-lines") && <GradientMesh />}
+          {(heroBackground === "dots" || heroBackground === "mesh-dots") && (
+            <DotGrid />
+          )}
+          {(heroBackground === "lines" || heroBackground === "mesh-lines") && (
+            <DiagonalLines />
+          )}
+        </>
+      )
+    }
+    <Container class="relative">
       {
         eyebrow && (
           <p class="text-small uppercase tracking-widest text-brand-light/70">
@@ -47,7 +79,16 @@ const breadcrumbs = [
           </p>
         )
       }
-      <h1 class="mt-2 text-h1">{title}</h1>
+      <div class="flex items-center gap-4">
+        {
+          icon && (
+            <span class="text-brand-light/90">
+              <CollectionIcon name={icon} class="h-10 w-10" />
+            </span>
+          )
+        }
+        <h1 class="mt-2 text-h1">{title}</h1>
+      </div>
       {
         tagline && (
           <p class="mt-4 max-w-3xl text-h5 text-brand-light/80">{tagline}</p>

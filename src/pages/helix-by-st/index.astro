@@ -5,6 +5,7 @@ import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import Card from "../../components/Card.astro";
 import Button from "../../components/Button.astro";
+import CollectionIcon from "../../components/CollectionIcon.astro";
 
 const products = (await getCollection("products")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -23,6 +24,7 @@ const subtitles: Record<string, string> = {
   title="Helix"
   tagline="Intelligence Woven Into Your Infrastructure"
   description="Where enterprise monitoring, configuration integrity, hybrid cloud control, and automation come together in one cohesive and intelligent ecosystem."
+  heroBackground="mesh-dots"
 >
   <Section variant="light">
     <Container class="max-w-3xl">
@@ -50,7 +52,10 @@ const subtitles: Record<string, string> = {
         {
           products.map((product) => (
             <Card>
-              <h3 class="text-h4">{product.data.title}</h3>
+              <div class="text-brand-primary">
+                <CollectionIcon name={product.data.icon} class="h-9 w-9" />
+              </div>
+              <h3 class="mt-4 text-h4">{product.data.title}</h3>
               {subtitles[product.id] && (
                 <p class="mt-1 text-small font-medium text-brand-primary">
                   {subtitles[product.id]}

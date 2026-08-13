@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import JsonLdOrganization from "../components/JsonLdOrganization.astro";
+import GradientMesh from "../components/GradientMesh.astro";
+import DotGrid from "../components/DotGrid.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Card from "../components/Card.astro";
@@ -18,8 +20,10 @@ const truncate = (s: string, n: number) =>
 >
   <JsonLdOrganization slot="head" type="Organization" />
   <!-- Hero -->
-  <Section variant="dark" class="py-24 md:py-32">
-    <Container class="max-w-4xl">
+  <Section variant="dark" class="relative overflow-hidden py-24 md:py-32">
+    <GradientMesh />
+    <DotGrid />
+    <Container class="relative max-w-4xl">
       <h1 class="text-display">
         Leading-edge IT technology services
         <span class="text-brand-primary">custom-tailored</span> for your business
