@@ -196,3 +196,32 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 - [x] Animated stat counter (`src/components/StatCounter.tsx`, Preact island, `client:visible`, IntersectionObserver, counts up once) on homepage. Real numbers only: 18+ years (founded 2008, about-us audit), 64+ verified clients (clients collection), 99% customer satisfaction (ST-Services copy), 3 office locations (contact audit). No invented figures.
 - [x] Card hover polish in `Card.astro`: CSS-only lift (-4px) + brand-primary border glow; disabled under prefers-reduced-motion.
 - [x] Verify: `astro check` 0 errors; `pnpm build` 32 pages OK; Lighthouse homepage 99/100/100/100 (solutions hub 99/100/100/100, about-us 99/100/100/100, product page 99/100/100/100). One a11y regression caught & fixed (PhotoPending caption opacity → full-strength text). Bundle: JS 25,860 B → 27,329 B (+1.5KB: StatCounter island + reveal script), CSS 61,928 B → 61,818 B, dist total 1.69MB → 1.72MB. No new runtime dependencies (motion was installed then removed in favor of WAAPI).
+
+---
+
+## Design Refresh (branch: design-refresh)
+
+**Status: Complete (on branch — not merged to main)**
+
+> Full visual design upgrade pass on the `design-refresh` branch. No copy changes;
+> content collections and schemas untouched. Inline SVG/CSS only — no stock photos,
+> no external image hotlinks, no new hosted binary assets. All motion respects
+> prefers-reduced-motion.
+
+- [x] Typography system: mega hero scale (`text-mega`, clamp 48–84px), `headline-xl` with accent-word treatment, `kicker` eyebrow (accent rule + tracked small caps), ghost outline `index-numeral`; palette extended with derived `brand-ink` / `brand-mist`
+- [x] Header: brand gradient hairline, taller bar, animated active-link underline, elevated dropdowns with accent borders; nav breakpoint md→lg
+- [x] Footer: brand-ink base + gradient hairline mirroring the header
+- [x] Homepage: asymmetric 12-col hero on ink band (mega type, dual CTA, NetworkMesh right); Vision/What We Do as mirrored editorial offsets with illustrations; numbered success-story cards; ink clients band
+- [x] Solutions hub: numbered cards with icon chips + tagline subheads; categories as hairline-joined panels
+- [x] Helix hub: same numbered treatment with dark icon chips; ink CTA band with split layout
+- [x] Success Stories: full-width dark featured lead card + numbered grid
+- [x] Clients: industry groups with ghost numerals + headline-xl + counts; hairline-grid logo cells with grayscale→color hover
+- [x] PageLayout hero: ink band, kicker eyebrow, icon chip, display-size title
+
+**Verification (this branch):**
+
+- `astro check` 0 errors; `pnpm build` 32 pages; ESLint/Prettier clean
+- SEO intact in built HTML on all sampled pages: title/canonical/OG on all; JSON-LD Organization (home), LocalBusiness (contact), BreadcrumbList (inner), Article (blog); sitemap + robots.txt generated
+- Lighthouse (local Chromium headless): home 99/100/100/100, solutions 99/100/100/100, helix 99/100/100/100, about 99/100/100/100, clients 100/100/100/100, success-stories 96/100/100/100, st-cloud 99/100/100/100
+- Two a11y issues caught by Lighthouse during the pass and fixed (featured-card accent contrast; h3→h2 heading order on hub cards)
+- Bundle vs main: JS 27,329 B → 27,329 B (0 change — all CSS/HTML/SVG); CSS 62,085 B → 70,634 B (+8.5KB design utilities); dist 1.73MB → 1.83MB
