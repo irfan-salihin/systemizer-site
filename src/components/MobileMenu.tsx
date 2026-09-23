@@ -58,9 +58,9 @@ export default function MobileMenu({ items }: Props) {
         <nav
           id="mobile-menu-panel"
           aria-label="Mobile navigation"
-          class="absolute inset-x-0 top-full border-t border-brand-surface bg-brand-light shadow-lg"
+          class="absolute inset-x-0 top-full max-h-[calc(100dvh-4.25rem)] overflow-y-auto border-t border-brand-line bg-brand-light shadow-xl"
         >
-          <ul class="divide-y divide-brand-surface">
+          <ul class="divide-y divide-brand-line">
             {items.map((item) => (
               <li key={item.label}>
                 {item.children ? (
@@ -68,7 +68,7 @@ export default function MobileMenu({ items }: Props) {
                     <div class="flex items-center justify-between pr-4">
                       <a
                         href={item.href}
-                        class="block flex-1 px-4 py-3 text-brand-secondary no-underline"
+                        class="block flex-1 px-4 py-3.5 font-medium text-brand-secondary no-underline"
                       >
                         {item.label}
                       </a>
@@ -97,14 +97,21 @@ export default function MobileMenu({ items }: Props) {
                       </button>
                     </div>
                     {expanded === item.label && (
-                      <ul class="bg-brand-surface/50 pb-2">
+                      <ul class="bg-brand-surface/60 pb-2">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <a
                               href={child.href}
-                              class="block px-8 py-2 text-brand-text no-underline hover:text-brand-primary"
+                              class="block px-6 py-2.5 text-small text-brand-text no-underline hover:text-brand-primary-dark"
                             >
-                              {child.label}
+                              <span class="block font-medium text-brand-secondary">
+                                {child.label}
+                              </span>
+                              {child.description && (
+                                <span class="mt-0.5 block text-micro text-brand-text">
+                                  {child.description}
+                                </span>
+                              )}
                             </a>
                           </li>
                         ))}
@@ -114,13 +121,21 @@ export default function MobileMenu({ items }: Props) {
                 ) : (
                   <a
                     href={item.href}
-                    class="block px-4 py-3 text-brand-secondary no-underline"
+                    class="block px-4 py-3.5 font-medium text-brand-secondary no-underline"
                   >
                     {item.label}
                   </a>
                 )}
               </li>
             ))}
+            <li class="p-4">
+              <a
+                href="/contact/"
+                class="block rounded-md bg-brand-secondary px-5 py-3 text-center font-medium text-brand-light no-underline"
+              >
+                Book a consultation
+              </a>
+            </li>
           </ul>
         </nav>
       )}

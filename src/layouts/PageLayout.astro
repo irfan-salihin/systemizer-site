@@ -4,7 +4,6 @@ import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import JsonLdBreadcrumb from "../components/JsonLdBreadcrumb.astro";
 import CollectionIcon from "../components/CollectionIcon.astro";
-import GradientMesh from "../components/GradientMesh.astro";
 import DotGrid from "../components/DotGrid.astro";
 import DiagonalLines from "../components/DiagonalLines.astro";
 
@@ -17,9 +16,8 @@ export interface Props {
   ogType?: "website" | "article";
   /** Lucide icon name (from a collection's `icon` field) shown beside the title. */
   icon?: string;
-  /** Decorative abstract background for the dark hero band. Default: flat. */
-  heroBackground?:
-    "flat" | "mesh" | "dots" | "lines" | "mesh-dots" | "mesh-lines";
+  /** Decorative technical background for the dark hero band. Default: flat. */
+  heroBackground?: "flat" | "dots" | "lines";
 }
 
 const {
@@ -57,31 +55,24 @@ const breadcrumbs = [
   </Fragment>
   <Section
     variant="ink"
-    class="relative overflow-hidden py-20 md:py-32"
+    class="relative overflow-hidden py-20 md:py-28"
     reveal={false}
   >
     {
       heroBackground !== "flat" && (
         <>
-          {(heroBackground === "mesh" ||
-            heroBackground === "mesh-dots" ||
-            heroBackground === "mesh-lines") && <GradientMesh />}
-          {(heroBackground === "dots" || heroBackground === "mesh-dots") && (
-            <DotGrid />
-          )}
-          {(heroBackground === "lines" || heroBackground === "mesh-lines") && (
-            <DiagonalLines />
-          )}
+          {heroBackground === "dots" && <DotGrid />}
+          {heroBackground === "lines" && <DiagonalLines />}
         </>
       )
     }
-    <Container class="relative">
-      {eyebrow && <p class="kicker kicker--on-dark">{eyebrow}</p>}
-      <div class="mt-5 flex items-center gap-5">
+    <Container class="relative max-w-4xl">
+      {eyebrow && <p class="kicker kicker--on-dark mb-6">{eyebrow}</p>}
+      <div class="flex items-start gap-5">
         {
           icon && (
-            <span class="flex h-14 w-14 items-center justify-center rounded-lg bg-brand-light/10 text-brand-light">
-              <CollectionIcon name={icon} class="h-7 w-7" />
+            <span class="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-light/10 text-brand-light ring-1 ring-brand-light/15">
+              <CollectionIcon name={icon} class="h-6 w-6" />
             </span>
           )
         }
@@ -89,7 +80,7 @@ const breadcrumbs = [
       </div>
       {
         tagline && (
-          <p class="mt-6 max-w-3xl text-h5 text-brand-light/75">{tagline}</p>
+          <p class="mt-6 max-w-2xl text-h5 text-brand-light/70">{tagline}</p>
         )
       }
     </Container>

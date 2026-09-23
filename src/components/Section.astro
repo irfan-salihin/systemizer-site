@@ -11,8 +11,6 @@ export interface Props {
   reveal?: boolean;
 }
 
-const { variant = "light", class: className = "", reveal = true } = Astro.props;
-
 const variants: Record<string, string> = {
   light: "bg-brand-light text-brand-text",
   surface: "bg-brand-surface text-brand-text",
@@ -20,13 +18,17 @@ const variants: Record<string, string> = {
   // ink: deepest band — near-black navy, used for high-contrast moments
   ink: "bg-brand-ink text-brand-light [&_h1]:text-brand-light [&_h2]:text-brand-light [&_h3]:text-brand-light [&_h4]:text-brand-light [&_h5]:text-brand-light [&_h6]:text-brand-light",
 };
+
+const { variant = "light", class: className = "", reveal = true } = Astro.props;
+
+const tone = variant === "dark" || variant === "ink" ? "on-dark" : "";
 ---
 
 <section
   class:list={[
-    "py-16 md:py-24",
+    "py-20 md:py-28",
     variants[variant],
-    (variant === "dark" || variant === "ink") && "on-dark",
+    tone,
     className,
   ]}
   data-reveal={reveal ? "" : undefined}

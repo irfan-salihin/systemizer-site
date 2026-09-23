@@ -8,7 +8,7 @@ const { class: className = "" } = Astro.props;
 
 <div
   class:list={[
-    "card rounded-lg border border-brand-surface bg-brand-light p-6 shadow-sm",
+    "card rounded-xl border border-brand-line bg-brand-light p-6",
     className,
   ]}
 >
@@ -24,12 +24,12 @@ const { class: className = "" } = Astro.props;
       border-color 200ms ease;
   }
   .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--color-brand-primary);
     box-shadow:
-      0 8px 20px -6px
-        color-mix(in srgb, var(--color-brand-primary) 22%, transparent),
-      0 2px 6px -2px rgb(0 0 0 / 0.06);
+      0 12px 28px -14px
+        color-mix(in srgb, var(--color-brand-primary) 28%, transparent),
+      0 2px 6px -2px rgb(0 0 0 / 0.05);
   }
   @media (prefers-reduced-motion: reduce) {
     .card {

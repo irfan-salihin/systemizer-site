@@ -1,23 +1,25 @@
 ---
 export interface Props {
   href: string;
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "onDark";
   class?: string;
 }
 
 const { href, variant = "primary", class: className = "" } = Astro.props;
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-body font-normal no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
+  "group inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-small font-medium no-underline transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary";
 
 const variants: Record<string, string> = {
-  primary: "bg-brand-primary text-brand-light hover:bg-brand-primary-dark",
+  primary: "bg-brand-secondary text-brand-light hover:bg-brand-primary-dark",
   // brand-primary-dark (#0066AB) text keeps ≥4.5:1 contrast on the surface/light
-  // backgrounds (brand-primary #0075C9 on #F3F6FF is only ~4.3:1 — fails WCAG AA).
+  // backgrounds (brand-primary #0075C9 on #F4F6FA is only ~4.3:1 — fails WCAG AA).
   secondary:
-    "border-2 border-brand-primary bg-transparent text-brand-primary-dark hover:bg-brand-surface",
+    "border border-brand-line bg-brand-light text-brand-graphite hover:border-brand-primary hover:text-brand-primary-dark",
   ghost:
-    "bg-transparent text-brand-primary-dark underline-offset-4 hover:underline",
+    "bg-transparent px-0 text-brand-primary-dark underline-offset-4 hover:underline",
+  onDark:
+    "border border-brand-light/25 bg-brand-light/5 text-brand-light hover:border-brand-light/60 hover:bg-brand-light/10",
 };
 ---
 

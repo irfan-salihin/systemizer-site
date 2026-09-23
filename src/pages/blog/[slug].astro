@@ -44,7 +44,7 @@ const formatDate = (d: Date) =>
   />
   <Section variant="light">
     <Container class="prose-like max-w-3xl">
-      <p class="text-small">
+      <p class="tech-label text-brand-primary-dark">
         {formatDate(entry.data.pubDate)} · {entry.data.author}
         {
           entry.data.updatedDate && (
@@ -54,9 +54,9 @@ const formatDate = (d: Date) =>
       </p>
       {
         entry.data.tags.length > 0 && (
-          <ul class="mt-2 flex flex-wrap gap-2 pl-0" style="list-style: none;">
+          <ul class="mt-4 flex flex-wrap gap-2 pl-0" style="list-style: none;">
             {entry.data.tags.map((tag) => (
-              <li class="rounded-full bg-brand-surface px-3 py-1 text-small text-brand-secondary">
+              <li class="rounded-full bg-brand-surface px-3 py-1 text-micro text-brand-graphite">
                 {tag}
               </li>
             ))}
@@ -68,9 +68,9 @@ const formatDate = (d: Date) =>
       </div>
     </Container>
   </Section>
-  <Section variant="surface">
+  <Section variant="ink">
     <Container>
-      <Button href="/blog/" variant="secondary">&lt; Back to Blog</Button>
+      <Button href="/blog/" variant="onDark">&larr; Back to blog</Button>
     </Container>
   </Section>
 </PageLayout>

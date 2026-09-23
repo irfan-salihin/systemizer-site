@@ -33,29 +33,27 @@ const offices = [
     <Container>
       <div class="grid gap-6 md:grid-cols-3">
         <Card>
-          <h2 class="text-h5">Email us</h2>
-          <p class="mt-3 text-small">
-            Please feel free to drop us a line. We will respond as soon as
-            possible.
+          <h2 class="text-h4 text-brand-secondary">Email us</h2>
+          <p class="mt-3 text-small text-brand-text">
+            Drop us a line — we'll respond as soon as possible.
           </p>
           <p class="mt-3 text-small">
             <a href="mailto:hello@systemizerinc.com">hello@systemizerinc.com</a>
           </p>
         </Card>
         <Card>
-          <h2 class="text-h5">Call any time</h2>
-          <p class="mt-3 text-small">
-            If you have any enquiries about our services, call us
+          <h2 class="text-h4 text-brand-secondary">Call us</h2>
+          <p class="mt-3 text-small text-brand-text">
+            For enquiries about our services, call us directly.
           </p>
           <p class="mt-3 text-small">
             <a href="tel:+60356120032">+603-5612 0032</a>
           </p>
         </Card>
         <Card>
-          <h2 class="text-h5">Customer Support</h2>
-          <p class="mt-3 text-small">
-            If you are an existing customer and need assistance, contact us at
-            this number
+          <h2 class="text-h4 text-brand-secondary">Customer support</h2>
+          <p class="mt-3 text-small text-brand-text">
+            Existing customer and need assistance? Reach our support line.
           </p>
           <p class="mt-3 text-small">
             <a href="tel:1800810967">1800 810 967</a>
@@ -63,13 +61,13 @@ const offices = [
         </Card>
       </div>
 
-      <h2 class="mt-12 text-h2">Visit us</h2>
-      <div class="mt-6 grid gap-6 md:grid-cols-3">
+      <h2 class="mt-16 text-h2">Visit us</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
         {
           offices.map((office) => (
             <Card>
-              <h3 class="text-h5">{office.name}</h3>
-              <p class="mt-3 text-small">{office.address}</p>
+              <h3 class="text-h4 text-brand-secondary">{office.name}</h3>
+              <p class="mt-3 text-small text-brand-text">{office.address}</p>
             </Card>
           ))
         }
@@ -79,9 +77,10 @@ const offices = [
 
   <Section variant="surface">
     <Container class="max-w-2xl">
-      <h2 class="text-h2">Leave Us a Message</h2>
-      <p class="mt-4">
-        Start a conversation with us. We are here to answer any question you
+      <p class="kicker">Start a conversation</p>
+      <h2 class="mt-5 text-h2">Leave us a message</h2>
+      <p class="mt-4 text-body text-brand-text">
+        Tell us what you're running today. We're here to answer any question you
         might have.
       </p>
 

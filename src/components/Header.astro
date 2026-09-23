@@ -18,31 +18,30 @@ const isActive = (href: string) =>
 <header class="sticky top-0 z-50">
   <!-- brand accent hairline -->
   <div
-    class="h-0.5 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary-dark"
+    class="h-px bg-gradient-to-r from-brand-primary via-brand-accent to-transparent"
     aria-hidden="true"
   >
   </div>
-  <div class="border-b border-brand-surface bg-brand-light/95 backdrop-blur">
+  <div class="border-b border-brand-line bg-brand-light/90 backdrop-blur-md">
     <Container>
-      <div class="relative flex h-[4.5rem] items-center justify-between gap-8">
+      <div class="flex h-[4.25rem] items-center justify-between gap-8">
         <a
           href="/"
           class="flex items-center no-underline"
           aria-label="Systemizer Technic — home"
         >
-          <!-- Real brand logo (blue on light header). Final asset audit in Phase 10. -->
           <img
             src={logoUrl}
             alt="Systemizer Technic"
             width="140"
             height="55"
-            class="h-9 w-auto"
+            class="h-8 w-auto"
           />
         </a>
 
         <!-- Desktop nav: pure static HTML, zero JS shipped -->
         <nav aria-label="Primary navigation" class="hidden lg:block">
-          <ul class="flex items-center gap-0.5">
+          <ul class="flex items-center gap-1">
             {
               NAV_ITEMS.map((item) => (
                 <li class={item.children ? "group relative" : "relative"}>
@@ -50,10 +49,10 @@ const isActive = (href: string) =>
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     class:list={[
-                      "nav-link relative flex items-center gap-1 rounded-md px-3 py-2 text-small no-underline transition-colors",
+                      "nav-link relative flex items-center gap-1 rounded-md px-3 py-2 text-small font-medium no-underline transition-colors",
                       isActive(item.href)
                         ? "nav-link--active text-brand-primary-dark"
-                        : "text-brand-secondary hover:text-brand-primary-dark",
+                        : "text-brand-graphite hover:text-brand-primary-dark",
                     ]}
                   >
                     {item.label}
@@ -64,7 +63,7 @@ const isActive = (href: string) =>
                         fill="none"
                         stroke="currentColor"
                         stroke-width="2"
-                        class="h-3 w-3"
+                        class="h-3 w-3 opacity-60 transition-transform duration-200 group-hover:rotate-180"
                         aria-hidden="true"
                       >
                         <path
@@ -76,26 +75,42 @@ const isActive = (href: string) =>
                     )}
                   </a>
                   {item.children && (
-                    <ul class="invisible absolute left-0 top-full z-50 min-w-48 rounded-lg border border-brand-surface bg-brand-light py-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                      {item.children.map((child) => (
-                        <li>
-                          <a
-                            href={child.href}
-                            aria-current={
-                              isActive(child.href) ? "page" : undefined
-                            }
-                            class:list={[
-                              "block border-l-2 border-transparent px-4 py-2 text-small no-underline transition-colors",
-                              isActive(child.href)
-                                ? "border-brand-primary text-brand-primary-dark"
-                                : "text-brand-text hover:border-brand-primary hover:bg-brand-surface hover:text-brand-primary-dark",
-                            ]}
-                          >
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    <div class="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <ul class="w-72 overflow-hidden rounded-xl border border-brand-line bg-brand-light p-2 shadow-2xl shadow-brand-secondary/10">
+                        {item.children.map((child) => (
+                          <li>
+                            <a
+                              href={child.href}
+                              aria-current={
+                                isActive(child.href) ? "page" : undefined
+                              }
+                              class:list={[
+                                "group/item block rounded-lg px-3 py-2.5 no-underline transition-colors",
+                                isActive(child.href)
+                                  ? "bg-brand-surface"
+                                  : "hover:bg-brand-surface",
+                              ]}
+                            >
+                              <span
+                                class:list={[
+                                  "block text-small font-medium",
+                                  isActive(child.href)
+                                    ? "text-brand-primary-dark"
+                                    : "text-brand-secondary group-hover/item:text-brand-primary-dark",
+                                ]}
+                              >
+                                {child.label}
+                              </span>
+                              {child.description && (
+                                <span class="mt-0.5 block text-micro text-brand-text">
+                                  {child.description}
+                                </span>
+                              )}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </li>
               ))
@@ -103,13 +118,18 @@ const isActive = (href: string) =>
           </ul>
         </nav>
 
-        <!-- Mobile menu: Preact island. client:idle is used (not client:visible)
-             because the hamburger button is always visible in the header, so
-             client:visible would hydrate it immediately anyway; client:idle
-             defers hydration to a browser idle period instead of competing with
-             initial page load, while still guaranteeing the menu works even if
-             the user never scrolls. -->
-        <MobileMenu items={NAV_ITEMS} client:idle />
+        <div class="flex items-center gap-2">
+          <a
+            href="/contact/"
+            class="hidden rounded-md bg-brand-secondary px-5 py-2.5 text-small font-medium text-brand-light no-underline transition-colors hover:bg-brand-primary lg:inline-flex"
+          >
+            Book a consultation
+          </a>
+
+          <!-- Mobile menu: Preact island. client:idle defers hydration to a
+               browser idle period instead of competing with initial load. -->
+          <MobileMenu items={NAV_ITEMS} client:idle />
+        </div>
       </div>
     </Container>
   </div>
@@ -122,7 +142,7 @@ const isActive = (href: string) =>
     position: absolute;
     left: 0.75rem;
     right: 0.75rem;
-    bottom: 0.25rem;
+    bottom: 0.1rem;
     height: 2px;
     background: var(--color-brand-primary);
     transform: scaleX(0);

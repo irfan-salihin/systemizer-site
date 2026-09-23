@@ -9,69 +9,76 @@ import CollectionIcon from "../../components/CollectionIcon.astro";
 const solutions = (await getCollection("solutions")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const categories = [
+  {
+    title: "Automation",
+    text: "Remove manual, repeated work from your operations — patching, provisioning, access, and disaster recovery — so systems stay consistent and your team stays focused.",
+  },
+  {
+    title: "Infrastructure & Platform",
+    text: "Agile foundations built on virtualisation and hyper-converged infrastructure, designed for continuity and reachable from anywhere.",
+  },
+  {
+    title: "Business Continuity",
+    text: "Resilience engineered in from the start, so your business can absorb change and disruption without losing momentum.",
+  },
+  {
+    title: "Managed Services",
+    text: "Incident management, onsite support, dedicated resources, and delivery management — best-in-class operations at a cost that improves your bottom line.",
+  },
+];
 ---
 
 <PageLayout
   title="Solutions"
-  tagline="Modern IT — built right with you at the centre."
-  description="Systemizer Technic offers a variety of solutions tailored to meet our clients' requirements. With our team's extensive experience, we specialise in handling multi-platform solutions and deployments across different industries."
-  heroBackground="mesh-lines"
+  tagline="Modern IT — built right, with you at the centre."
+  description="Systemizer Technic delivers infrastructure, automation, cloud, and managed services for Malaysian enterprises and government — multi-platform, vendor-neutral, and accountable end to end."
+  heroBackground="lines"
 >
   <Section variant="light">
-    <Container class="max-w-3xl">
-      <h2 class="text-h2">Let us solve your problems</h2>
-      <p class="mt-4">
-        We believe that every organization needs to view its IT infrastructure
-        development holistically. The functionality and performance of
-        Enterprise IT is essential to running a successful business. It supports
-        the workforce, helps with day-to-day operations, and provides security
-        for sensitive data within your network environment - it's no wonder this
-        department has become an integral part of many organizations.
-      </p>
-      <p class="mt-4">
-        Maintaining your enterprise's information technology infrastructure
-        requires constant attention from you—but it also offers many
-        opportunities to grow through investment-backed services like cloud
-        computing, which gives businesses more control over how they securely
-        store information.
-      </p>
-      <p class="mt-4">
-        Systemizer Technic offers a variety of solutions tailored to meet our
-        clients' requirements. With our team's extensive experience, we
-        specialise in handling multi-platform solutions and deployments across
-        different industries.
-      </p>
-    </Container>
-  </Section>
-
-  <Section variant="surface">
     <Container>
-      <ol class="grid gap-6 md:grid-cols-2">
+      <div class="max-w-2xl">
+        <p class="kicker">The stack</p>
+        <h2 class="headline-xl mt-5">One team for the whole stack.</h2>
+        <p class="mt-5 text-h5 text-brand-text">
+          From the data centre to the cloud to the run-book, Systemizer takes
+          ownership of the systems your business depends on.
+        </p>
+      </div>
+
+      <ol class="mt-14 grid gap-6 md:grid-cols-2">
         {
           solutions.map((solution, i) => (
-            <li class="group relative overflow-hidden rounded-lg border border-brand-surface bg-brand-light p-8 transition-all duration-200 hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl">
+            <li class="group relative overflow-hidden rounded-2xl border border-brand-line bg-brand-light p-8 transition-all duration-200 hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl">
               <span
-                class="index-numeral absolute -right-2 -top-4 opacity-60 transition-opacity group-hover:opacity-100"
+                class="index-numeral absolute right-6 top-5 opacity-40 transition-opacity group-hover:opacity-100"
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-brand-surface text-brand-primary">
-                <CollectionIcon name={solution.data.icon} class="h-6 w-6" />
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-surface text-brand-primary-dark ring-1 ring-brand-line">
+                <CollectionIcon name={solution.data.icon} class="h-5 w-5" />
               </div>
-              <h2 class="mt-5 text-h3">{solution.data.title}</h2>
-              <p class="mt-1 text-small font-medium uppercase tracking-wider text-brand-primary-dark">
+              <h2 class="mt-6 text-h3 text-brand-secondary">
+                {solution.data.title}
+              </h2>
+              <p class="mt-3 max-w-md text-small text-brand-text">
                 {solution.data.tagline}
               </p>
-              <p class="mt-3">{solution.data.description}</p>
-              <p class="mt-5">
-                <Button
+              <p class="mt-6">
+                <a
                   href={`/solutions/${solution.id}/`}
-                  variant="ghost"
-                  class="px-0"
+                  class="inline-flex items-center gap-2 text-small font-medium text-brand-primary-dark no-underline"
                 >
-                  Learn More &gt;
-                </Button>
+                  Learn more
+                  <span
+                    aria-hidden="true"
+                    class="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    &rarr;
+                  </span>
+                </a>
               </p>
             </li>
           ))
@@ -80,78 +87,27 @@ const solutions = (await getCollection("solutions")).sort(
     </Container>
   </Section>
 
-  <!-- Migrated from the live Solutions page: the four capability areas below are
-       static copy on the live page (not tied to collection entries). -->
-  <!-- Migrated from the live Solutions page: the four capability areas below are
-       static copy on the live page (not tied to collection entries). -->
-  <Section variant="light">
+  <Section variant="surface">
     <Container>
-      <p class="kicker">Capabilities</p>
-      <h2 class="headline-xl mt-4">Solution categories</h2>
-      <div
-        class="mt-10 grid gap-px overflow-hidden rounded-lg border border-brand-surface bg-brand-surface md:grid-cols-2"
-      >
-        <div class="bg-brand-light p-8">
-          <h3 class="text-h4">Automation</h3>
-          <p class="mt-3">
-            Automation is a critical factor that determines the efficiency and
-            effectiveness of an enterprise's IT infrastructure. Automating your
-            processes ensures that repeated, time-consuming tasks are taken care
-            of so your employees can increase productivity.
-          </p>
-          <p class="mt-3">
-            Leading-edge automation technology ensure that your business stays
-            ahead of the curve no matter what comes your way.
-          </p>
-        </div>
-        <div class="bg-brand-light p-8">
-          <h3 class="text-h4">Infrastructure / Platform</h3>
-          <p class="mt-3">
-            Without the proper infrastructure, your business cannot maintain
-            continuity. Our team specializes in providing infrastructure as a
-            service solution designed to create an agile infrastructure
-            foundation.
-          </p>
-          <p class="mt-3">
-            Deploying virtualized servers with HCI (hyper-converged
-            infrastructures) so they're easily accessible from any device
-            without having unnecessary hassle searching out individual devices
-            within your data centre is critical to business continuity and
-            streamlined operations.
-          </p>
-        </div>
-        <div class="bg-brand-light p-8">
-          <h3 class="text-h4">Business Continuity</h3>
-          <p class="mt-3">
-            Without effective, seamless business continuity solutions, when
-            things go wrong or need to change quickly due to any unforeseen
-            disaster, your business can't pivot. We help keep your business
-            agile every step of the way.
-          </p>
-          <p class="mt-3">
-            Systemizer's powerful technologies and solutions can help any
-            organization plan its IT and get the most out of it.
-          </p>
-        </div>
-        <div class="bg-brand-light p-8">
-          <h3 class="text-h4">Managed Services</h3>
-          <p class="mt-3">
-            We understand how important it is for companies to manage their
-            costs while maintaining their IT infrastructure in the best working
-            condition. We draw from our vast experience and qualified team to
-            provide best-in-class services at a cost that will improve your
-            bottom line.
-          </p>
-          <p class="mt-3">
-            Our Managed Services Include: Incident Management · Labour · Onsite
-            Support &amp; Maintenance · Dedicated Resources · Client Delivery
-            Management
-          </p>
-        </div>
+      <div class="max-w-2xl">
+        <p class="kicker">Capabilities</p>
+        <h2 class="headline-xl mt-5">What we take off your plate.</h2>
       </div>
-      <p class="mt-8">
-        <Button href="/contact/">Contact Us For A Consultation</Button>
-      </p>
+      <div
+        class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-brand-line bg-brand-line md:grid-cols-2"
+      >
+        {
+          categories.map((category) => (
+            <div class="bg-brand-light p-8">
+              <h3 class="text-h4 text-brand-secondary">{category.title}</h3>
+              <p class="mt-3 text-small text-brand-text">{category.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-10">
+        <Button href="/contact/">Book a consultation</Button>
+      </div>
     </Container>
   </Section>
 </PageLayout>

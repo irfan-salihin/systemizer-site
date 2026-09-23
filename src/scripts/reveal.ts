@@ -24,10 +24,10 @@ if (!reduced) {
         observer.unobserve(entry.target);
         (entry.target as HTMLElement).animate(
           [
-            { opacity: 0, transform: "translateY(16px)" },
+            { opacity: 0, transform: "translateY(12px)" },
             { opacity: 1, transform: "translateY(0)" },
           ],
-          { duration: 400, easing: "ease-out", fill: "both" },
+          { duration: 300, easing: "ease-out", fill: "both" },
         );
       }
     },

@@ -34,16 +34,18 @@ const industries = [...counts.entries()]
 >
   <Section variant="light">
     <Container>
-      <p class="max-w-3xl">
-        We have had the opportunity to work with clients from various
-        industries, large and small. We treat each client with the same care and
-        attention, to ensure that the service we provide always meets their
-        requirements.
-      </p>
+      <div class="max-w-2xl">
+        <p class="kicker">Trusted by</p>
+        <h2 class="headline-xl mt-5">Clients we have worked for</h2>
+        <p class="mt-5 text-h5 text-brand-text">
+          Organisations across Malaysia's finance, government, telco, and
+          industrial sectors — treated with the same care, regardless of size.
+        </p>
+      </div>
 
       <!-- Filterable logo wall (Preact island, client:visible). SSRs the full
            wall so the page is complete without JS; tabs filter client-side. -->
-      <div class="mt-10">
+      <div class="mt-12">
         <ClientWall client:visible clients={clients} industries={industries} />
       </div>
     </Container>

@@ -182,6 +182,28 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ---
 
+## Redesign v2 — Modern / Minimal / Technical (ad hoc)
+
+**Status: Complete** (current state of the site)
+
+> Full revamp addressing: too much copy, plain design, weak hierarchy, and a
+> generic "IT agency" feel. No changes to content schemas or the data model.
+> All visuals remain inline SVG/CSS in brand tokens; Inter Variable is now
+> self-hosted (replacing Roboto); retired the 3-blob `GradientMesh`. Motion
+> still respects `prefers-reduced-motion`.
+
+- [x] **Typography foundation:** swapped Roboto for self-hosted Inter Variable across the system; rebuilt the type scale with real weight contrast (400 body / 500 UI / 600 headings / 650 display) and negative display tracking, replacing the thin 300-weight Elementor scale
+- [x] **Palette refactor:** added `brand-line`, `brand-graphite`, `brand-data`; narrowed blue to a precision accent; neutralised `brand-surface`
+- [x] **Navigation:** compressed 10 flat items to 5 groups (Solutions, Helix by ST, Company, Work, Contact) with descriptive mega-panel dropdowns and a persistent "Book a consultation" CTA; mobile menu updated to match
+- [x] **Hero:** new headline ("Enterprise infrastructure, engineered end to end.") + one-line subhead + dual CTA; new explanatory `SystemCore.astro` architecture diagram (Helix core + four capability nodes) replacing the decorative `NetworkMesh`
+- [x] **Homepage restructure:** Hero → Proof strip (stats + client wall) → Core capabilities → Why Systemizer → Helix spotlight → Selected work → Closing CTA. Removed the legacy Vision/What-We-Do prose walls and the standalone clients band
+- [x] **Copy reduction:** homepage paragraphs replaced with concise, outcome-led copy; About, Solutions hub, IT Consulting, Helix hub, Clients, Partners, Contact, Success Stories, Blog, and detail-page CTAs tightened. Long-form detail retained on solution/product pages
+- [x] **Component polish:** `Button` (sharper radius, weight 500, new `onDark` variant), `Card` (hairline, tighter lift), `Section` (larger padding, `on-dark` tone helper), Footer slimmed; retired `GradientMesh.astro`
+- [x] **Affordance:** "Learn more →" arrow links replace the ghost `Learn More >` buttons; technical micro-labels (`tech-label`) used for metadata
+- [x] **Verify:** `astro check` 0 errors / 0 warnings; `pnpm build` 32 pages OK; ESLint clean; Inter self-hosted with zero external font requests; all sampled routes return 200
+
+---
+
 ## Visual Richness (ad hoc)
 
 **Status: Complete**

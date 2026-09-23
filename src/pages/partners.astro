@@ -15,12 +15,14 @@ const partners = (await getCollection("partners")).sort((a, b) =>
 >
   <Section variant="light">
     <Container>
-      <p class="max-w-3xl">
-        We work with cutting-edge solution providers to ensure we provide the
-        most up-to-date, sophisticated technology available for your business.
-        Our strategic partnerships allow us to provide best-in-class solutions
-        for every client.
-      </p>
+      <div class="max-w-2xl">
+        <p class="kicker">Ecosystem</p>
+        <h2 class="headline-xl mt-5">Our partners</h2>
+        <p class="mt-5 text-h5 text-brand-text">
+          We work with cutting-edge solution providers so we can bring the most
+          up-to-date, sophisticated technology to every engagement.
+        </p>
+      </div>
       <ul class="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {
           partners.map((partner) => (

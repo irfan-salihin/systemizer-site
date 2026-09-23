@@ -1,59 +1,94 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — PLACEHOLDER brand values pending Phase 10 replacement.
- * Single source of truth for brand colors, type scale, and spacing, mapped
- * into Tailwind 4's theme via the @theme directive (per tech-stack.md).
- * Source: src-planning/brand-tokens-placeholder.md
+ * Design tokens — Systemizer Technic.
+ *
+ * Palette is derived from the brand logo (#0075C9) and locked to a tight,
+ * near-monochrome system: deep ink surfaces, white/neutral light surfaces, and
+ * a single precision accent. Brand blue is used sparingly (rules, active
+ * states, data highlights) rather than flooded across the UI.
+ *
+ * Typography is a single modern grotesque (Inter Variable) across the whole
+ * system, relying on real weight contrast (400 body / 500 UI / 650 display)
+ * rather than the old thin-light Elementor scale.
+ *
+ * Final approved brand colors/fonts still swap in during Phase 10 — these
+ * tokens are the single source of truth so that swap is a one-file change.
  */
 @theme {
-  /* Brand colors (from live site's Elementor kit custom properties + logo SVG) */
+  /* Brand colors */
   --color-brand-primary: #0075c9;
   --color-brand-accent: #0077c8;
   --color-brand-primary-dark: #0066ab;
   --color-brand-secondary: #142149;
   --color-brand-dark: #131022;
   --color-brand-light: #ffffff;
-  --color-brand-surface: #f3f6ff;
-  --color-brand-text: #666666;
+  --color-brand-surface: #f4f6fa;
+  --color-brand-text: #5b6472;
   --color-brand-warning: #ff8c00;
 
-  /* Typography (live site: Arial headings, Roboto body — self-hosted via Fontsource) */
-  --font-heading: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  --font-body: Roboto, Arial, Helvetica, sans-serif;
+  /* Extended neutrals — the structural backbone of the refresh */
+  --color-brand-ink: #0a1526; /* deepest band, hero/footer depth */
+  --color-brand-mist: #e9eef6; /* hairline + subtle fills */
+  --color-brand-line: #e4e9f1; /* default border hairline on light */
+  --color-brand-graphite: #2b3648; /* strong secondary text on light */
+  --color-brand-data: #17b0c9; /* precision data accent (diagrams only) */
 
-  /* Extended brand tints/shades derived from the placeholder palette */
-  --color-brand-ink: #0b1b33; /* deeper than brand-dark — hero depth */
-  --color-brand-mist: #e7eef9; /* between surface and light */
+  /* Typography — one grotesque, real weight contrast */
+  --font-sans:
+    "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Type scale (from live Elementor kit, desktop values) */
-  --text-mega: clamp(3rem, 6.5vw, 5.25rem); /* 48–84px hero display */
-  --text-mega--line-height: 1.06;
-  --text-mega--font-weight: 300;
-  --text-display: 3.75rem; /* 60px */
-  --text-display--line-height: 4.375rem; /* 70px */
-  --text-display--font-weight: 300;
-  --text-h1: 2.8125rem; /* 45px */
-  --text-h1--line-height: 3.4375rem; /* 55px */
-  --text-h1--font-weight: 300;
-  --text-h2: 2.1875rem; /* 35px */
-  --text-h2--line-height: 2.8125rem; /* 45px */
-  --text-h2--font-weight: 300;
-  --text-h3: 1.625rem; /* 26px */
-  --text-h3--line-height: 2.25rem; /* 36px */
-  --text-h3--font-weight: 300;
-  --text-h4: 1.375rem; /* 22px */
-  --text-h4--line-height: 2.1875rem; /* 35px */
-  --text-h4--font-weight: 300;
-  --text-h5: 1.125rem; /* 18px */
-  --text-h5--line-height: 2rem; /* 32px */
-  --text-h5--font-weight: 300;
+  /* Type scale — tight, modular, modern. Display sizes are fluid. */
+  --text-mega: clamp(2.75rem, 6vw, 4.75rem); /* 44–76px hero display */
+  --text-mega--line-height: 1.02;
+  --text-mega--font-weight: 650;
+  --text-mega--letter-spacing: -0.035em;
+
+  --text-display: clamp(2.25rem, 4.5vw, 3.25rem); /* 36–52px page titles */
+  --text-display--line-height: 1.08;
+  --text-display--font-weight: 650;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-h1: clamp(1.9375rem, 3.5vw, 2.75rem); /* 31–44px */
+  --text-h1--line-height: 1.12;
+  --text-h1--font-weight: 650;
+  --text-h1--letter-spacing: -0.025em;
+
+  --text-h2: clamp(1.625rem, 2.8vw, 2.125rem); /* 26–34px */
+  --text-h2--line-height: 1.16;
+  --text-h2--font-weight: 600;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: clamp(1.3125rem, 2vw, 1.5rem); /* 21–24px */
+  --text-h3--line-height: 1.28;
+  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: -0.012em;
+
+  --text-h4: 1.25rem; /* 20px */
+  --text-h4--line-height: 1.4;
+  --text-h4--font-weight: 600;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-h5: 1.0625rem; /* 17px */
+  --text-h5--line-height: 1.55;
+  --text-h5--font-weight: 500;
+
   --text-body: 1rem; /* 16px */
-  --text-body--line-height: 1.8125rem; /* 29px */
-  --text-body--font-weight: 300;
+  --text-body--line-height: 1.65;
+  --text-body--font-weight: 400;
+
   --text-small: 0.875rem; /* 14px */
-  --text-small--line-height: 1.5625rem; /* 25px */
-  --text-small--font-weight: 300;
+  --text-small--line-height: 1.6;
+  --text-small--font-weight: 400;
+
+  --text-micro: 0.75rem; /* 12px */
+  --text-micro--line-height: 1.4;
+  --text-micro--font-weight: 500;
 
   /* Spacing scale (4px base unit) */
   --spacing-1: 0.25rem;
@@ -71,15 +106,22 @@
   --spacing-32: 8rem;
 }
 
-/* Base element defaults aligned with the placeholder type scale */
+/* Base element defaults */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     font-family: var(--font-body);
     font-size: var(--text-body);
     line-height: var(--text-body--line-height);
-    font-weight: 300;
+    font-weight: 400;
     color: var(--color-brand-text);
     background-color: var(--color-brand-light);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -89,11 +131,22 @@
   h5,
   h6 {
     font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--color-brand-secondary);
   }
 
   a {
-    color: var(--color-brand-primary);
+    color: var(--color-brand-primary-dark);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-brand-primary) 24%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
@@ -102,12 +155,14 @@
   .prose-like h2 {
     font-size: var(--text-h3);
     line-height: var(--text-h3--line-height);
+    font-weight: var(--text-h3--font-weight);
     margin-top: var(--spacing-10);
     margin-bottom: var(--spacing-4);
   }
   .prose-like h3 {
     font-size: var(--text-h4);
     line-height: var(--text-h4--line-height);
+    font-weight: var(--text-h4--font-weight);
     margin-top: var(--spacing-8);
     margin-bottom: var(--spacing-3);
   }
@@ -123,7 +178,7 @@
     margin-bottom: var(--spacing-2);
   }
   .prose-like strong {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-brand-secondary);
   }
   /* WCAG: links inside prose must not rely on color alone */
@@ -135,65 +190,80 @@
 
 /* ---- Design-refresh typographic system ------------------------------------ */
 @layer components {
-  /* Kicker / eyebrow above section headings: tracked-out small caps with a
-     short accent rule before it. */
+  /* Kicker / eyebrow above section headings — a micro technical label with a
+     short accent rule. Monospace-adjacent tracking, uppercase, restrained. */
   .kicker {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+    gap: 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-brand-primary-dark);
   }
   .kicker::before {
     content: "";
     display: inline-block;
-    width: 2.25rem;
-    height: 2px;
+    width: 1.5rem;
+    height: 1.5px;
     background: var(--color-brand-primary);
   }
   /* On dark sections the kicker needs a lighter treatment for contrast */
   .on-dark .kicker,
   .kicker--on-dark {
-    color: var(--color-brand-light);
+    color: #8ec5ec;
   }
   .on-dark .kicker::before,
   .kicker--on-dark::before {
     background: var(--color-brand-accent);
   }
 
-  /* Confident section headline: big, light, tight-tracked, with an optional
-     accent word rendered in brand-primary italic-serif-free emphasis. */
+  /* Confident section headline — big, tight-tracked, weight 650. */
   .headline-xl {
     font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-    line-height: 1.08;
-    font-weight: 300;
-    letter-spacing: -0.015em;
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    font-weight: var(--text-h1--font-weight);
+    letter-spacing: var(--text-h1--letter-spacing);
     color: var(--color-brand-secondary);
+    text-wrap: balance;
   }
   .on-dark .headline-xl,
   .headline-xl--on-dark {
     color: var(--color-brand-light);
   }
+  /* Accent word: brand blue, used only for the emphasis phrase in a headline. */
   .headline-accent {
     color: var(--color-brand-primary);
   }
   .on-dark .headline-accent,
   .headline-accent--on-dark {
-    color: var(--color-brand-accent);
+    color: #6bb8e6;
+  }
+
+  /* Technical micro-label used on diagrams, stats and metadata: monospace-ish,
+     tracked out, low emphasis. Communicates "engineered" without paragraphs. */
+  .tech-label {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-brand-graphite);
+  }
+  .on-dark .tech-label {
+    color: #9fb2cc;
   }
 
   /* Oversized ghost numeral used for editorial index markers (01 / 02 / …) */
   .index-numeral {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300;
+    font-size: 2.5rem;
+    font-weight: 600;
     line-height: 1;
+    letter-spacing: -0.03em;
     color: transparent;
-    -webkit-text-stroke: 1.5px var(--color-brand-primary);
+    -webkit-text-stroke: 1.25px var(--color-brand-primary);
   }
 
   /* Logo-wall tiles (Clients/Partners): soft card, hover lift + brand glow.

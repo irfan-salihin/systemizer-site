@@ -1,0 +1,207 @@
+---
+/**
+ * Hero system diagram — an explanatory, legible representation of how
+ * Systemizer connects an organisation's estate: on-prem infrastructure,
+ * cloud, automation, monitoring and support, tied together by Helix.
+ *
+ * Inline SVG, brand-token colors only. Decorative (aria-hidden) because the
+ * same information is conveyed in the hero copy and capability grid.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+// Four capability nodes orbiting a central Helix core.
+const nodes = [
+  {
+    label: "ST-INFRA",
+    cx: 60,
+    cy: 70,
+    anchor: "start" as const,
+    dot: "var(--color-brand-primary)",
+  },
+  {
+    label: "ST-CLOUD",
+    cx: 420,
+    cy: 70,
+    anchor: "end" as const,
+    dot: "var(--color-brand-primary)",
+  },
+  {
+    label: "ST-AUTOMATION",
+    cx: 60,
+    cy: 330,
+    anchor: "start" as const,
+    dot: "var(--color-brand-data)",
+  },
+  {
+    label: "ST-SERVICES",
+    cx: 420,
+    cy: 330,
+    anchor: "end" as const,
+    dot: "var(--color-brand-data)",
+  },
+];
+
+const center = { x: 240, y: 200 };
+---
+
+<svg
+  viewBox="0 0 480 400"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  aria-hidden="true"
+  role="presentation"
+>
+  <defs>
+    <linearGradient id="hero-link" x1="0" y1="0" x2="0" y2="1">
+      <stop
+        offset="0%"
+        stop-color="var(--color-brand-primary)"
+        stop-opacity="0.5"></stop>
+      <stop
+        offset="100%"
+        stop-color="var(--color-brand-primary)"
+        stop-opacity="0.12"></stop>
+    </linearGradient>
+    <radialGradient id="hero-core" cx="50%" cy="50%" r="50%">
+      <stop
+        offset="0%"
+        stop-color="var(--color-brand-primary)"
+        stop-opacity="0.35"></stop>
+      <stop
+        offset="100%"
+        stop-color="var(--color-brand-primary)"
+        stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  <!-- faint structural grid -->
+  <g stroke="var(--color-brand-light)" stroke-opacity="0.06">
+    <line x1="240" y1="20" x2="240" y2="380"></line>
+    <line x1="40" y1="200" x2="440" y2="200"></line>
+    <circle cx="240" cy="200" r="150"></circle>
+    <circle cx="240" cy="200" r="230"></circle>
+  </g>
+
+  <!-- connection links from core to each node -->
+  <g stroke="url(#hero-link)" stroke-width="1.5">
+    {
+      nodes.map((n) => (
+        <line x1={center.x} y1={center.y} x2={n.cx} y2={n.cy} class="hero-link" />
+      ))
+    }
+  </g>
+
+  <!-- core halo -->
+  <circle cx="240" cy="200" r="90" fill="url(#hero-core)"></circle>
+
+  <!-- Helix core -->
+  <circle
+    cx="240"
+    cy="200"
+    r="44"
+    fill="var(--color-brand-ink)"
+    stroke="var(--color-brand-primary)"
+    stroke-opacity="0.6"
+    stroke-width="1.5"></circle>
+  <circle
+    cx="240"
+    cy="200"
+    r="58"
+    stroke="var(--color-brand-primary)"
+    stroke-opacity="0.25"
+    stroke-width="1"
+    class="hero-pulse"></circle>
+  <path
+    d="M226 186c14-6 14 14 28 8M226 206c14-6 14 14 28 8"
+    stroke="var(--color-brand-light)"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-opacity="0.9"></path>
+  <text
+    x="240"
+    y="256"
+    text-anchor="middle"
+    class="hero-core-label">HELIX</text
+  >
+
+  <!-- capability nodes -->
+  {
+    nodes.map((n) => (
+      <>
+        <circle
+          cx={n.cx}
+          cy={n.cy}
+          r="7"
+          fill={n.dot}
+          stroke="var(--color-brand-ink)"
+          stroke-width="2"
+        />
+        <circle
+          cx={n.cx}
+          cy={n.cy}
+          r="14"
+          stroke={n.dot}
+          stroke-opacity="0.4"
+          stroke-width="1"
+        />
+        <text
+          x={n.cx}
+          y={n.cy - 22}
+          text-anchor={n.anchor}
+          class="hero-node-label">
+          {n.label}
+        </text>
+      </>
+    ))
+  }
+</svg>
+
+<style>
+  .hero-node-label,
+  .hero-core-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    fill: var(--color-brand-light);
+    fill-opacity: 0.72;
+  }
+  .hero-core-label {
+    font-size: 10px;
+    fill-opacity: 0.5;
+  }
+  .hero-link {
+    stroke-dasharray: 4 6;
+    animation: hero-flow 3s linear infinite;
+  }
+  .hero-pulse {
+    transform-origin: 240px 200px;
+    animation: hero-ring 3.6s ease-out infinite;
+  }
+  @keyframes hero-flow {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+  @keyframes hero-ring {
+    0% {
+      transform: scale(0.75);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-link,
+    .hero-pulse {
+      animation: none;
+    }
+  }
+</style>

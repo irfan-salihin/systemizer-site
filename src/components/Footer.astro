@@ -44,57 +44,28 @@ const socialLinks = [
     aria-hidden="true"
   >
   </div>
-  <Container class="py-16">
-    <!-- Real brand logo (white variant on dark footer). Final asset audit in Phase 10. -->
-    <a
-      href="/"
-      aria-label="Systemizer Technic — home"
-      class="mb-10 inline-block"
-    >
-      <img
-        src={logoWhiteUrl}
-        alt="Systemizer Technic"
-        width="140"
-        height="55"
-        class="h-10 w-auto"
-      />
-    </a>
+  <Container class="py-14">
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-      <!-- Newsletter -->
+      <!-- Brand + reach -->
       <div>
-        <h2 class="text-h5 font-normal text-brand-light">Stay informed</h2>
-        <p class="mt-3 text-small text-brand-light/80">
-          Subscribe to our newsletter to stay informed about latest updates
-        </p>
-        <!-- Backend wiring (Cloudflare Pages Function + Turnstile) is Phase 7 -->
-        <form action="#" method="post" class="mt-4 flex flex-col gap-3">
-          <label for="newsletter-email" class="text-small text-brand-light/80">
-            Email Address:
-          </label>
-          <input
-            id="newsletter-email"
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="you@example.com"
-            class="rounded-md border border-brand-light/20 bg-brand-light/10 px-3 py-2 text-small text-brand-light placeholder:text-brand-light/50 focus-visible:outline-2 focus-visible:outline-brand-primary"
+        <a
+          href="/"
+          aria-label="Systemizer Technic — home"
+          class="inline-block"
+        >
+          <img
+            src={logoWhiteUrl}
+            alt="Systemizer Technic"
+            width="140"
+            height="55"
+            class="h-8 w-auto"
           />
-          <button
-            type="submit"
-            class="inline-flex items-center justify-center rounded-md bg-brand-primary px-4 py-2 text-small text-brand-light transition-colors hover:bg-brand-primary-dark"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-
-      <!-- Contact + hours -->
-      <div>
-        <h2 class="text-h5 font-normal text-brand-light">
-          Reach out to us for a chat
-        </h2>
-        <ul class="mt-4 space-y-2 text-small text-brand-light/80">
+        </a>
+        <p class="mt-5 text-small text-brand-light/60">
+          Enterprise infrastructure, cloud, and automation — engineered end to
+          end.
+        </p>
+        <ul class="mt-6 space-y-2 text-small">
           <li>
             <a
               href="mailto:hello@systemizerinc.com"
@@ -109,31 +80,20 @@ const socialLinks = [
               >+603-5612 0032</a
             >
           </li>
+          <li class="text-brand-light/60">Mon–Fri · 09:00–18:00</li>
         </ul>
-        <h3
-          class="mt-6 text-small font-medium uppercase tracking-wide text-brand-light/60"
-        >
-          Business hours
-        </h3>
-        <p class="mt-2 text-small text-brand-light/80">
-          Mon - Fri : 09:00 am – 06:00 pm
-        </p>
       </div>
 
       <!-- Quick links -->
       <nav aria-label="Footer quick links">
-        <h2
-          class="text-small font-medium uppercase tracking-wide text-brand-light/60"
-        >
-          Quick links
-        </h2>
-        <ul class="mt-4 space-y-2">
+        <h2 class="tech-label text-brand-light/50">Quick links</h2>
+        <ul class="mt-5 space-y-3">
           {
             quickLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class="text-small text-brand-light/80 no-underline transition-colors hover:text-brand-primary"
+                  class="text-small text-brand-light/75 no-underline transition-colors hover:text-brand-light"
                 >
                   {link.label}
                 </a>
@@ -145,18 +105,14 @@ const socialLinks = [
 
       <!-- Company links -->
       <nav aria-label="Footer company links">
-        <h2
-          class="text-small font-medium uppercase tracking-wide text-brand-light/60"
-        >
-          Company
-        </h2>
-        <ul class="mt-4 space-y-2">
+        <h2 class="tech-label text-brand-light/50">Company</h2>
+        <ul class="mt-5 space-y-3">
           {
             companyLinks.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class="text-small text-brand-light/80 no-underline transition-colors hover:text-brand-primary"
+                  class="text-small text-brand-light/75 no-underline transition-colors hover:text-brand-light"
                 >
                   {link.label}
                 </a>
@@ -165,15 +121,42 @@ const socialLinks = [
           }
         </ul>
       </nav>
+
+      <!-- Newsletter -->
+      <div>
+        <h2 class="tech-label text-brand-light/50">Stay informed</h2>
+        <p class="mt-5 text-small text-brand-light/60">
+          Occasional updates on infrastructure, cloud, and IT operations.
+        </p>
+        <!-- Backend wiring (Cloudflare Pages Function + Turnstile) is Phase 7 -->
+        <form action="#" method="post" class="mt-5 flex flex-col gap-3">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="you@example.com"
+            class="rounded-md border border-brand-light/15 bg-brand-light/5 px-3 py-2 text-small text-brand-light placeholder:text-brand-light/40 focus-visible:outline-2 focus-visible:outline-brand-primary"
+          />
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-md bg-brand-primary px-4 py-2 text-small font-medium text-brand-light transition-colors hover:bg-brand-primary-dark"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
     </div>
 
     <div
-      class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-brand-light/10 pt-8 sm:flex-row"
+      class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-brand-light/10 pt-8 sm:flex-row"
     >
-      <p class="text-small text-brand-light/60">
+      <p class="text-small text-brand-light/50">
         © 2025 Systemizer Technic (200801005926). All rights reserved.
       </p>
-      <ul class="flex items-center gap-4" aria-label="Social media links">
+      <ul class="flex items-center gap-5" aria-label="Social media links">
         {
           socialLinks.map((social) => (
             <li>
@@ -182,7 +165,7 @@ const socialLinks = [
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Systemizer Technic on ${social.label}`}
-                class="text-brand-light/60 transition-colors hover:text-brand-primary"
+                class="text-brand-light/50 transition-colors hover:text-brand-light"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
