@@ -4,6 +4,7 @@ import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Button from "../components/Button.astro";
 import PhotoPending from "../components/PhotoPending.astro";
+import CircuitTrace from "../components/illustrations/CircuitTrace.astro";
 
 const values = [
   {
@@ -132,8 +133,12 @@ const leaders = [
     </Container>
   </Section>
 
-  <Section variant="ink">
-    <Container>
+  <Section variant="ink" class="relative overflow-hidden">
+    <CircuitTrace
+      class="pointer-events-none absolute -right-16 -top-10 w-[32rem] opacity-25"
+      flip
+    />
+    <Container class="relative">
       <div class="grid items-center gap-10 lg:grid-cols-12">
         <div class="lg:col-span-8">
           <h2 class="headline-xl">

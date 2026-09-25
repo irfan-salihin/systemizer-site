@@ -3,6 +3,7 @@ import PageLayout from "../layouts/PageLayout.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Button from "../components/Button.astro";
+import CapabilityArt from "../components/illustrations/CapabilityArt.astro";
 
 const services = [
   "Infrastructure Audit",
@@ -29,6 +30,9 @@ const services = [
           <h2 class="headline-xl mt-5">
             Unbiased guidance, grounded in what actually works.
           </h2>
+          <div class="mt-10 rounded-2xl border border-brand-line bg-brand-surface p-6">
+            <CapabilityArt variant="services" class="w-full" />
+          </div>
         </div>
         <div class="lg:col-span-6 lg:col-start-7">
           <p class="text-h5 text-brand-text">

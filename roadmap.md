@@ -182,6 +182,25 @@ This roadmap tracks progress across all phases of the systemizerinc.com rebuild.
 
 ---
 
+## Redesign v3 — Copy Trim & Technical Art (ad hoc)
+
+**Status: Complete** (current state of the site)
+
+> Follow-up pass: cut remaining prose walls and add original animated abstract
+> technical art (no photography, no external image hotlinks). All visuals are
+> inline SVG/CSS in brand tokens; every animation is disabled under
+> `prefers-reduced-motion`.
+
+- [x] **Solution detail copy trim:** rewrote `st-infra`, `st-automation`, `st-cloud`, `st-services` MDX into structured, scannable content (short intro + bold lead-in bullets). Body words: st-automation 1162→~386, st-cloud 1008→~327, st-services 850→~270, st-infra 639→~287
+- [x] **Homepage copy trim:** "Selected work" now leads with a hard result metric instead of outcome paragraphs; added `resultStat`/`resultLabel` to the success-stories schema + all 3 entries. Homepage body copy now ~387 words, all paragraphs ≤23 words
+- [x] **New art components** in `src/components/illustrations/`: `TopologyField.astro` (animated network topology with travelling packets), `CircuitTrace.astro` (animated circuit traces), `CapabilityArt.astro` (five motifs: infra/automation/cloud/services/helix), plus the earlier `SystemCore.astro` hero diagram
+- [x] **Placement:** home hero + Helix band (TopologyField), home CTA + About/Helix CTA + every inner-page hero (CircuitTrace), solution/product detail side panels and hub cards + IT Consulting (CapabilityArt)
+- [x] **Reduced motion:** packet animations and pulses disabled and structural sweep animations stopped under `prefers-reduced-motion`; verified in built CSS
+- [x] **Cleanup:** removed now-orphaned `NetworkMesh.astro`, `ServerRack.astro`, `DataPipeline.astro`
+- [x] **Verify:** `astro check` 0 errors / 0 warnings; `pnpm build` OK; ESLint clean; all sampled routes 200; zero external image/font references
+
+---
+
 ## Redesign v2 — Modern / Minimal / Technical (ad hoc)
 
 **Status: Complete** (current state of the site)

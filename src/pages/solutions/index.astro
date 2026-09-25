@@ -5,10 +5,19 @@ import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import Button from "../../components/Button.astro";
 import CollectionIcon from "../../components/CollectionIcon.astro";
+import CapabilityArt from "../../components/illustrations/CapabilityArt.astro";
 
 const solutions = (await getCollection("solutions")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const artBySlug: Record<string, "infra" | "automation" | "cloud" | "services"> =
+  {
+    "st-infra": "infra",
+    "st-automation": "automation",
+    "st-cloud": "cloud",
+    "st-services": "services",
+  };
 
 const categories = [
   {
@@ -51,6 +60,10 @@ const categories = [
         {
           solutions.map((solution, i) => (
             <li class="group relative overflow-hidden rounded-2xl border border-brand-line bg-brand-light p-8 transition-all duration-200 hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl">
+              <CapabilityArt
+                variant={artBySlug[solution.id] ?? "infra"}
+                class="pointer-events-none absolute -right-8 -top-6 w-52 opacity-[0.07] transition-opacity duration-300 group-hover:opacity-[0.14]"
+              />
               <span
                 class="index-numeral absolute right-6 top-5 opacity-40 transition-opacity group-hover:opacity-100"
                 aria-hidden="true"

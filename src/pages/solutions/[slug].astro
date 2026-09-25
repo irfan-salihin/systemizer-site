@@ -4,6 +4,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import Button from "../../components/Button.astro";
+import CapabilityArt from "../../components/illustrations/CapabilityArt.astro";
 
 export async function getStaticPaths() {
   const solutions = await getCollection("solutions");
@@ -15,6 +16,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const artBySlug: Record<string, "infra" | "automation" | "cloud" | "services"> =
+  {
+    "st-infra": "infra",
+    "st-automation": "automation",
+    "st-cloud": "cloud",
+    "st-services": "services",
+  };
+const art = artBySlug[entry.id] ?? "infra";
 ---
 
 <PageLayout
@@ -25,8 +35,26 @@ const { Content } = await render(entry);
   icon={entry.data.icon}
 >
   <Section variant="light">
-    <Container class="prose-like max-w-3xl">
-      <Content />
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="prose-like lg:col-span-7">
+          <Content />
+        </div>
+        <div class="lg:col-span-5">
+          <div class="sticky top-28 rounded-2xl border border-brand-line bg-brand-surface p-8">
+            <CapabilityArt variant={art} class="w-full" />
+            <p class="tech-label mt-6 text-brand-primary-dark">
+              {entry.data.title}
+            </p>
+            <p class="mt-2 text-small text-brand-text">
+              {entry.data.description}
+            </p>
+            <div class="mt-6">
+              <Button href="/contact/">Book a consultation</Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
   </Section>
   <Section variant="ink">

@@ -1,0 +1,90 @@
+---
+/**
+ * CircuitTrace — decorative circuit-board style traces with animated signal
+ * pulses. Used as a corner/side accent on hero and CTA bands.
+ *
+ * Inline SVG + CSS animation, brand tokens only. Decorative (aria-hidden).
+ * Animation disabled under prefers-reduced-motion.
+ */
+export interface Props {
+  class?: string;
+  /** Flip horizontally for the opposite corner. */
+  flip?: boolean;
+}
+
+const { class: className = "", flip = false } = Astro.props;
+
+const traces = [
+  "M0 20 H120 L150 50 H300",
+  "M0 70 H80 L110 100 H260 L290 130 H420",
+  "M0 130 H60 L95 165 H210",
+  "M0 190 H140 L170 220 H340 L370 250 H500",
+  "M0 250 H100 L130 280 H240",
+];
+---
+
+<svg
+  viewBox="0 0 520 300"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={[className, flip && "scale-x-[-1]"]}
+  aria-hidden="true"
+  role="presentation"
+  preserveAspectRatio="xMidYMid meet"
+>
+  {
+    traces.map((d, i) => (
+      <>
+        <path
+          d={d}
+          stroke="var(--color-brand-primary)"
+          stroke-opacity="0.22"
+          stroke-width="1.25"
+        />
+        <path
+          d={d}
+          class="trace-signal"
+          style={`animation-delay:${i * 0.9}s`}
+        />
+      </>
+    ))
+  }
+  {
+    traces.map((d, i) => (
+      <g class="trace-packets">
+        <circle r="2.5" fill="var(--color-brand-data)" opacity="0.9">
+          <animateMotion
+            dur={`${5 + i}s`}
+            repeatCount="indefinite"
+            begin={`${i * 0.6}s`}
+            path={d}
+          />
+        </circle>
+      </g>
+    ))
+  }
+</svg>
+
+<style>
+  .trace-signal {
+    fill: none;
+    stroke: var(--color-brand-accent);
+    stroke-width: 1.25;
+    stroke-dasharray: 40 320;
+    animation: trace-sweep 5s linear infinite;
+  }
+  @keyframes trace-sweep {
+    to {
+      stroke-dashoffset: -360;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trace-signal {
+      animation: none;
+      opacity: 0.4;
+    }
+    .trace-packets {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+/**
+ * TopologyField — an abstract, animated network topology used as a decorative
+ * section/hero backdrop. Nodes are connected by traces along which small
+ * packets travel, communicating "systems talking to each other".
+ *
+ * Inline SVG + CSS animation only. All colors come from brand tokens.
+ * Decorative: aria-hidden. Animation is disabled under prefers-reduced-motion.
+ * Designed to sit absolutely over a dark (ink) band.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+// A loose mesh of nodes across the viewbox.
+const nodes = [
+  { x: 60, y: 90 },
+  { x: 190, y: 45 },
+  { x: 340, y: 80 },
+  { x: 470, y: 40 },
+  { x: 120, y: 210 },
+  { x: 260, y: 175 },
+  { x: 400, y: 220 },
+  { x: 540, y: 170 },
+  { x: 70, y: 330 },
+  { x: 220, y: 300 },
+  { x: 360, y: 340 },
+  { x: 500, y: 300 },
+  { x: 620, y: 240 },
+  { x: 600, y: 100 },
+];
+
+const edges: Array<[number, number]> = [
+  [0, 1],
+  [1, 2],
+  [2, 3],
+  [0, 4],
+  [1, 5],
+  [2, 6],
+  [3, 7],
+  [3, 13],
+  [4, 5],
+  [5, 6],
+  [6, 7],
+  [4, 8],
+  [5, 9],
+  [6, 10],
+  [7, 11],
+  [8, 9],
+  [9, 10],
+  [10, 11],
+  [11, 12],
+  [12, 13],
+  [9, 5],
+];
+---
+
+<svg
+  viewBox="0 0 660 380"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  aria-hidden="true"
+  role="presentation"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <!-- connecting traces -->
+  <g stroke="var(--color-brand-primary)" stroke-opacity="0.16" stroke-width="1">
+    {edges.map(([a, b]) => <line x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y} />)}
+  </g>
+
+  <!-- travelling packets -->
+  <g class="topology-packets">
+    {
+      edges.slice(0, 10).map(([a, b], i) => (
+        <circle r="2.4" fill="var(--color-brand-data)">
+          <animateMotion
+            dur={`${6 + (i % 5)}s`}
+            repeatCount="indefinite"
+            begin={`${i * 0.7}s`}
+            path={`M${nodes[a].x} ${nodes[a].y} L${nodes[b].x} ${nodes[b].y}`}
+          />
+        </circle>
+      ))
+    }
+  </g>
+
+  <!-- nodes -->
+  {
+    nodes.map((n) => (
+      <g>
+        <circle
+          cx={n.x}
+          cy={n.y}
+          r="3"
+          fill="var(--color-brand-light)"
+          fill-opacity="0.35"
+        />
+        <circle
+          cx={n.x}
+          cy={n.y}
+          r="7"
+          stroke="var(--color-brand-primary)"
+          stroke-opacity="0.4"
+          stroke-width="1"
+        />
+      </g>
+    ))
+  }
+</svg>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .topology-packets {
+      display: none;
+    }
+  }
+</style>

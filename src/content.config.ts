@@ -27,6 +27,10 @@ const successStories = defineCollection({
     challenge: z.string(),
     solutionSummary: z.string(),
     outcome: z.string(),
+    /** Short headline metric for cards, e.g. "3 weeks" / "7 → 1". */
+    resultStat: z.string().optional(),
+    /** What resultStat measures, e.g. "to full deployment". */
+    resultLabel: z.string().optional(),
     testimonialQuote: z.string().optional(),
     testimonialAuthor: z.string().optional(),
     logoRef: z.string().optional(),
